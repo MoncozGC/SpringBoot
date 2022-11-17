@@ -1,0 +1,24 @@
+server:
+  port: 8081
+# Ports to be started for the corresponding environment
+spring:
+  profiles:
+    active: com_websocket
+
+---
+server:
+  port: 9908
+spring:
+  config:
+    activate:
+      on-profile: com_websocket
+
+---
+
+server:
+  port: 8888
+spring:
+  config:
+    activate:
+      on-profile: chat_chatweb
+
