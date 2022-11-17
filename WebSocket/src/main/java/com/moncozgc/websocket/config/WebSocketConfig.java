@@ -42,10 +42,10 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
         // 广播发送消息
         // setAllowedOriginPatterns: 允许跨域
         // setAllowedOrigins: 不允许跨域
-        registry.addEndpoint("/publicServer").setAllowedOrigins("*").withSockJS();
+        registry.addEndpoint("/publicServer").setAllowedOriginPatterns("*").withSockJS();
 
         // 点对点发送消息
-        registry.addEndpoint("/privateServer").setAllowedOrigins("*").withSockJS();
+        registry.addEndpoint("/privateServer").setAllowedOriginPatterns("*").withSockJS();
     }
 
 
