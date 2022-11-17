@@ -38,7 +38,6 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         //注册两个STOMP的endpoint，分别用于广播和点对点
 
-
         // 广播发送消息
         // setAllowedOriginPatterns: 允许跨域
         // setAllowedOrigins: 不允许跨域
