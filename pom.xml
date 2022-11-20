@@ -14,6 +14,7 @@
     <packaging>pom</packaging>
     <name>SpringBootEmploy</name>
     <description>SpringBootEmploy</description>
+    <!--在当前项目中重新配置导入包的新的版本, 可查看 spring-boot-starter-parent -> spring-boot-dependencies的官方版本号-->
     <properties>
         <java.version>1.8</java.version>
     </properties>
