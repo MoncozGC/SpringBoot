@@ -27,10 +27,11 @@ public class MainApplication {
         Pet tom02 = run.getBean("tom", Pet.class);
         System.out.println("组件: " + (tom01 == tom02));
 
+        // 配置类本身也是组件
         MyConfig bean = run.getBean(MyConfig.class);
         System.out.println(bean);
 
-        // 如果@Configuration(proxyBeanMethods = true)代理对象调用方法. SpringBoot总会检查这个组件是否在容器中, 如果有就不会创建.
+        // MyConfig.java如果@Configuration(proxyBeanMethods = true)代理对象调用方法. SpringBoot总会检查这个组件是否在容器中, 如果有就不会创建.
         // 保持单实例
         User user = bean.user01();
         User user2 = bean.user01();

@@ -7,6 +7,16 @@ public class User {
     private String name;
     private int age;
 
+    private Pet pet;
+
+    public Pet getPet() {
+        return pet;
+    }
+
+    public void setPet(Pet pet) {
+        this.pet = pet;
+    }
+
     public User() {
     }
 
@@ -17,9 +27,10 @@ public class User {
 
     @Override
     public String toString() {
-        return "Person{" +
+        return "User{" +
                 "name='" + name + '\'' +
                 ", age=" + age +
+                ", pet=" + pet +
                 '}';
     }
 
