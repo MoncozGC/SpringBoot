@@ -45,7 +45,12 @@
             <artifactId>fastjson</artifactId>
             <version>1.2.70</version>
         </dependency>
-
+        <!-- 生成假数据工具 -->
+        <dependency>
+            <groupId>io.gitee.ForteScarlet</groupId>
+            <artifactId>mock.java</artifactId>
+            <version>1.9.3</version>
+        </dependency>
     </dependencies>
 
     <build>
