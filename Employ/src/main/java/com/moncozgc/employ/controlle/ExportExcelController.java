@@ -75,7 +75,7 @@ public class ExportExcelController {
      *
      * @param response 请求
      */
-    @GetMapping(value = "/export/exportFlower")
+    @GetMapping(value = "/exportFlower")
     public void ExportFlower(HttpServletResponse response) {
         // 生成假数据
         HashMap<String, Object> template = new HashMap<>(2);
@@ -95,7 +95,8 @@ public class ExportExcelController {
         // 获取导出模板地址
         ClassPathResource classPathResource = new ClassPathResource("static/export/template/ExportExcelDTO.xlsx");
         String path = classPathResource.getPath();
-        TemplateExportParams templateExportParams = new TemplateExportParams(path, 1);
+        // 设置Sheet页名称, 指定Sheet页模板索引从0开始
+        TemplateExportParams templateExportParams = new TemplateExportParams(path, "指定名称", 1);
         Workbook wb = ExcelExportUtil.exportExcel(templateExportParams, exportMap);
         String time = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss"));
         String fileName = "模板文件" + time + ".xlsx";
