@@ -2,8 +2,11 @@ package com.moncozgc.employ.controlle;
 
 import cn.afterturn.easypoi.excel.ExcelExportUtil;
 import cn.afterturn.easypoi.excel.entity.TemplateExportParams;
+import com.forte.util.Mock;
+import com.forte.util.mockbean.MockObject;
 import com.google.common.collect.Maps;
 import com.moncozgc.employ.dto.ExportExcelDTO;
+import com.moncozgc.employ.dto.ExportFlowerDto;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
@@ -67,5 +70,44 @@ public class ExportExcelController {
         }
     }
 
+    /**
+     * 根据生成的假数据, 指定sheet页导出数据
+     *
+     * @param response 请求
+     */
+    @GetMapping(value = "/export/exportFlower")
+    public void ExportFlower(HttpServletResponse response) {
+        // 生成假数据
+        HashMap<String, Object> template = new HashMap<>(2);
+        template.put("time_unit|1-24", 0);
+        template.put("total_num|18-80", 0);
+        Mock.set(ExportFlowerDto.class, template);
+
+        MockObject<ExportFlowerDto> mock = Mock.get(ExportFlowerDto.class);
+
+        // 拿到20个list
+        List<ExportFlowerDto> dataList = mock.getList(20);
+        System.out.println("随机数据: " + dataList.toString());
+
+        HashMap<String, Object> exportMap = Maps.newHashMap();
+        exportMap.put("exportData", dataList);
+
+        // 获取导出模板地址
+        ClassPathResource classPathResource = new ClassPathResource("static/export/template/ExportExcelDTO.xlsx");
+        String path = classPathResource.getPath();
+        TemplateExportParams templateExportParams = new TemplateExportParams(path, 1);
+        Workbook wb = ExcelExportUtil.exportExcel(templateExportParams, exportMap);
+        String time = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss"));
+        String fileName = "模板文件" + time + ".xlsx";
+
+        try {
+            response.setContentType("application/octet-stream;charset=utf-8");
+            response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(fileName, "utf-8"));
+            response.flushBuffer();
+            wb.write(response.getOutputStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }
