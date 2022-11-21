@@ -37,6 +37,13 @@
             <artifactId>spring-boot-starter-tomcat</artifactId>
             <!--            <scope>provided</scope>-->
         </dependency>
+
+        <!-- 添加Kafka -->
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka_2.11</artifactId>
+            <version>0.10.0.1</version>
+        </dependency>
     </dependencies>
 
     <build>

@@ -3,7 +3,7 @@ server:
 # Ports to be started for the corresponding environment
 spring:
   profiles:
-    active: com_websocket
+    active: kafka_websocket
 
 ---
 server:
@@ -21,4 +21,13 @@ spring:
   config:
     activate:
       on-profile: chat_chatweb
+
+---
+
+server:
+  port: 8082
+spring:
+  config:
+    activate:
+      on-profile: kafka_websocket
 
