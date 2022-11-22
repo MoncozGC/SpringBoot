@@ -2,6 +2,7 @@ package com.moncozgc.mall.service;
 
 /**
  * redis基本操作
+ * 对象和数组都以json形式进行存储
  * Created by MoncozGC on 2022/11/22
  */
 public interface RedisService {
