@@ -1,7 +1,5 @@
 package com.moncozgc.mall.mbg.model;
 
-import io.swagger.annotations.ApiModelProperty;
-
 import java.io.Serializable;
 
 public class PmsBrand implements Serializable {
@@ -9,29 +7,57 @@ public class PmsBrand implements Serializable {
 
     private String name;
 
-    @ApiModelProperty(value = "首字母")
+    /**
+     * 首字母
+     *
+     * @mbggenerated
+     */
     private String firstLetter;
 
     private Integer sort;
 
-    @ApiModelProperty(value = "是否为品牌制造商：0->不是；1->是")
+    /**
+     * 是否为品牌制造商：0->不是；1->是
+     *
+     * @mbggenerated
+     */
     private Integer factoryStatus;
 
     private Integer showStatus;
 
-    @ApiModelProperty(value = "产品数量")
+    /**
+     * 产品数量
+     *
+     * @mbggenerated
+     */
     private Integer productCount;
 
-    @ApiModelProperty(value = "产品评论数量")
+    /**
+     * 产品评论数量
+     *
+     * @mbggenerated
+     */
     private Integer productCommentCount;
 
-    @ApiModelProperty(value = "品牌logo")
+    /**
+     * 品牌logo
+     *
+     * @mbggenerated
+     */
     private String logo;
 
-    @ApiModelProperty(value = "专区大图")
+    /**
+     * 专区大图
+     *
+     * @mbggenerated
+     */
     private String bigPic;
 
-    @ApiModelProperty(value = "品牌故事")
+    /**
+     * 品牌故事
+     *
+     * @mbggenerated
+     */
     private String brandStory;
 
     private static final long serialVersionUID = 1L;
