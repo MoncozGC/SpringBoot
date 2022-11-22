@@ -5,19 +5,23 @@ import com.moncozgc.mall.mbg.mapper.PmsBrandMapper;
 import com.moncozgc.mall.mbg.model.PmsBrand;
 import com.moncozgc.mall.mbg.model.PmsBrandExample;
 import com.moncozgc.mall.service.PmsBrandService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * PmsBrandService实现类
+ * 品牌管理PmsBrandService实现类
  * Created by macro on 2019/4/19.
  */
 @Service
 public class PmsBrandServiceImpl implements PmsBrandService {
-    @Autowired
+    @Resource
     private PmsBrandMapper brandMapper;
+
+    private static final Logger logger = LoggerFactory.getLogger(PmsBrandServiceImpl.class);
 
     @Override
     public List<PmsBrand> listAllBrand() {
