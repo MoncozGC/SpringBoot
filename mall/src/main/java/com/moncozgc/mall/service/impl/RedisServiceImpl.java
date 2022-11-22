@@ -29,7 +29,7 @@ public class RedisServiceImpl implements RedisService {
 
     @Override
     public boolean expire(String key, long expire) {
-        return stringRedisTemplate.expire(key, expire, TimeUnit.SECONDS);
+        return Boolean.TRUE.equals(stringRedisTemplate.expire(key, expire, TimeUnit.SECONDS));
     }
 
     @Override
