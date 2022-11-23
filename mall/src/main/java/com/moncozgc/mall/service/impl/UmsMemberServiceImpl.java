@@ -84,7 +84,7 @@ public class UmsMemberServiceImpl implements UmsMemberService {
     public CommonResult<String> deleteAuthCode(String telephone) {
         String telephoneKey = REDIS_KEY_PREFIX_AUTH_CODE + telephone;
         // 查看key是否存在
-        if (!redisService.hasKey(telephoneKey)) {
+        if (redisService.hasKey(telephoneKey)) {
             return CommonResult.failed("key不存在");
         }
         redisService.remove(telephoneKey);
@@ -95,7 +95,7 @@ public class UmsMemberServiceImpl implements UmsMemberService {
     @Override
     public CommonResult<Long> getExpireKey(String telephone) {
         String telephoneKey = REDIS_KEY_PREFIX_AUTH_CODE + telephone;
-        if (!redisService.hasKey(telephoneKey)) {
+        if (redisService.hasKey(telephoneKey)) {
             return CommonResult.failed("key不存在");
         }
         Long keyExpireTime = redisService.getExpire(telephoneKey, TimeUnit.SECONDS);

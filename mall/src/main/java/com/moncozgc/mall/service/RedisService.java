@@ -41,8 +41,8 @@ public interface RedisService {
     /**
      * 判断key是否存在
      *
-     * @param key
-     * @return 存在返回true
+     * @param key 键
+     * @return 存在返回为false(对原生hasKey进行取反操作)
      */
     boolean hasKey(String key);
 
@@ -56,7 +56,8 @@ public interface RedisService {
 
     /**
      * 返回key的过期时间
-     * @param key 键
+     *
+     * @param key      键
      * @param timeUnit 想要展示的时间单位
      * @return key的过期时间
      */
