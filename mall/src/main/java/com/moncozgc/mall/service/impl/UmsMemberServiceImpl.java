@@ -48,7 +48,7 @@ public class UmsMemberServiceImpl implements UmsMemberService {
         // 验证码绑定手机号存储到redis并设置过期时间
         redisService.set(REDIS_KEY_PREFIX_AUTH_CODE + telephone, sb.toString());
         redisService.expire(REDIS_KEY_PREFIX_AUTH_CODE + telephone, REDIS_KEY_EXPIRE_AUTH_CODE);
-        logger.info("手机号: " + telephone + " 生成的验证码:" + sb);
+        logger.info("手机号: " + telephone + ", 生成的验证码:" + sb);
         return CommonResult.success(sb.toString(), "获取验证码成功");
     }
 
