@@ -32,4 +32,11 @@ public interface UmsMemberService {
      * @return 返回执行结果
      */
     CommonResult deleteAuthCode(String telephone);
+
+    /**
+     * 获取key的过期时间
+     * @param telephone 键
+     * @return 返回过期时间
+     */
+    CommonResult getExpireKey(String telephone);
 }

@@ -46,4 +46,9 @@ public class RedisServiceImpl implements RedisService {
     public Long increment(String key, long delta) {
         return stringRedisTemplate.opsForValue().increment(key, delta);
     }
+
+    @Override
+    public Long getExpire(String key, TimeUnit timeUnit) {
+        return stringRedisTemplate.getExpire(key, timeUnit);
+    }
 }

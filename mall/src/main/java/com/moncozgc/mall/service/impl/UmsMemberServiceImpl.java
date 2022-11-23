@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 实现类
@@ -87,7 +88,18 @@ public class UmsMemberServiceImpl implements UmsMemberService {
             return CommonResult.failed("key不存在");
         }
         redisService.remove(telephoneKey);
-        logger.info("redis删除key: " + telephoneKey);
-        return CommonResult.success(null, telephoneKey + " key删除成功");
+        logger.info("Redis删除KEY: " + telephoneKey);
+        return CommonResult.success(telephoneKey, "KEY删除成功");
+    }
+
+    @Override
+    public CommonResult getExpireKey(String telephone) {
+        String telephoneKey = REDIS_KEY_PREFIX_AUTH_CODE + telephone;
+        if (!redisService.hasKey(telephoneKey)) {
+            return CommonResult.failed("key不存在");
+        }
+        Long keyExpireTime = redisService.getExpire(telephoneKey, TimeUnit.SECONDS);
+        logger.info("Redis KEY: " + telephoneKey + ", Expire 为: " + keyExpireTime);
+        return CommonResult.success(keyExpireTime, "Expire 获取成功");
     }
 }

@@ -1,5 +1,7 @@
 package com.moncozgc.mall.service;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * redis基本操作
  * 对象和数组都以json形式进行存储
@@ -38,6 +40,7 @@ public interface RedisService {
 
     /**
      * 判断key是否存在
+     *
      * @param key
      * @return 存在返回true
      */
@@ -50,5 +53,13 @@ public interface RedisService {
      * @param delta 自增步长
      */
     Long increment(String key, long delta);
+
+    /**
+     * 返回key的过期时间
+     * @param key 键
+     * @param timeUnit 想要展示的时间单位
+     * @return key的过期时间
+     */
+    Long getExpire(String key, TimeUnit timeUnit);
 
 }
