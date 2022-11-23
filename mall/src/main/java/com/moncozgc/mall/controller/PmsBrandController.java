@@ -36,8 +36,8 @@ public class PmsBrandController {
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult createBrand(@RequestBody PmsBrand brand) {
-        CommonResult commonResult;
+    public CommonResult<Object> createBrand(@RequestBody PmsBrand brand) {
+        CommonResult<Object> commonResult;
         int count = brandService.createBrand(brand);
 
         if (count == 1) {
@@ -52,8 +52,8 @@ public class PmsBrandController {
 
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult updateBrand(@PathVariable("id") Long id, @RequestBody PmsBrand pmsBrandDto, BindingResult result) {
-        CommonResult commonResult;
+    public CommonResult<Object> updateBrand(@PathVariable("id") Long id, @RequestBody PmsBrand pmsBrandDto, BindingResult result) {
+        CommonResult<Object> commonResult;
         int count = brandService.updateBrand(id, pmsBrandDto);
         if (count == 1) {
             commonResult = CommonResult.success(pmsBrandDto);
@@ -67,7 +67,7 @@ public class PmsBrandController {
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult deleteBrand(@PathVariable("id") Long id) {
+    public CommonResult<Object> deleteBrand(@PathVariable("id") Long id) {
         int count = brandService.deleteBrand(id);
         if (count == 1) {
             LOGGER.debug("deleteBrand success :id={}", id);

@@ -38,7 +38,7 @@ public class UmsMemberServiceImpl implements UmsMemberService {
      * @return 后端结果信息返回
      */
     @Override
-    public CommonResult generateAuthCode(String telephone) {
+    public CommonResult<String> generateAuthCode(String telephone) {
         StringBuilder sb = new StringBuilder();
         Random random = new Random();
         // 生成随机六位的验证码
@@ -61,7 +61,7 @@ public class UmsMemberServiceImpl implements UmsMemberService {
      * @return 后端结果信息返回
      */
     @Override
-    public CommonResult verifyAuthCode(String telephone, String authCode) {
+    public CommonResult<String> verifyAuthCode(String telephone, String authCode) {
         if (authCode.isEmpty()) {
             return CommonResult.failed("请输入验证码");
         }
@@ -77,11 +77,11 @@ public class UmsMemberServiceImpl implements UmsMemberService {
     /**
      * 移除手机号的key
      *
-     * @param telephone
+     * @param telephone 键
      * @return 返回执行结果
      */
     @Override
-    public CommonResult deleteAuthCode(String telephone) {
+    public CommonResult<String> deleteAuthCode(String telephone) {
         String telephoneKey = REDIS_KEY_PREFIX_AUTH_CODE + telephone;
         // 查看key是否存在
         if (!redisService.hasKey(telephoneKey)) {
@@ -93,7 +93,7 @@ public class UmsMemberServiceImpl implements UmsMemberService {
     }
 
     @Override
-    public CommonResult getExpireKey(String telephone) {
+    public CommonResult<Long> getExpireKey(String telephone) {
         String telephoneKey = REDIS_KEY_PREFIX_AUTH_CODE + telephone;
         if (!redisService.hasKey(telephoneKey)) {
             return CommonResult.failed("key不存在");

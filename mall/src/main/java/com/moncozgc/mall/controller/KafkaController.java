@@ -21,7 +21,7 @@ public class KafkaController {
 
     @RequestMapping(value = "/sendMessage", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult sendMessag(@RequestParam String message) {
+    public CommonResult<String> sendMessag(@RequestParam String message) {
         kafkaProducer.send(message);
         return CommonResult.success(message, "发送成功");
     }

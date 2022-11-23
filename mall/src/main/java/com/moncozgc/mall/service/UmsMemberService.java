@@ -14,7 +14,7 @@ public interface UmsMemberService {
      * @param telephone 手机号
      * @return 返回执行结果
      */
-    CommonResult generateAuthCode(String telephone);
+    CommonResult<String> generateAuthCode(String telephone);
 
     /**
      * 判断验证码和手机号是否匹配
@@ -23,20 +23,20 @@ public interface UmsMemberService {
      * @param authCode  验证码
      * @return 返回执行结果
      */
-    CommonResult verifyAuthCode(String telephone, String authCode);
+    CommonResult<String> verifyAuthCode(String telephone, String authCode);
 
     /**
      * 删除手机号的key
      *
-     * @param telephone
+     * @param telephone 键
      * @return 返回执行结果
      */
-    CommonResult deleteAuthCode(String telephone);
+    CommonResult<String> deleteAuthCode(String telephone);
 
     /**
      * 获取key的过期时间
      * @param telephone 键
      * @return 返回过期时间
      */
-    CommonResult getExpireKey(String telephone);
+    CommonResult<Long> getExpireKey(String telephone);
 }

@@ -28,7 +28,7 @@ public class UmsMemberController {
      */
     @RequestMapping(value = "/getAuthCode", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult getAuthCode(@RequestParam String telephone) {
+    public CommonResult<String> getAuthCode(@RequestParam String telephone) {
         return memberService.generateAuthCode(telephone);
     }
 
@@ -41,7 +41,7 @@ public class UmsMemberController {
      */
     @RequestMapping(value = "/verifyAuthCode", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult updatePassword(@RequestParam String telephone, @RequestParam String authCode) {
+    public CommonResult<String> updatePassword(@RequestParam String telephone, @RequestParam String authCode) {
         return memberService.verifyAuthCode(telephone, authCode);
     }
 
@@ -53,13 +53,13 @@ public class UmsMemberController {
      */
     @RequestMapping(value = "/deleteAuthCode", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult deleteAuthCode(@RequestParam String telephone) {
+    public CommonResult<String> deleteAuthCode(@RequestParam String telephone) {
         return memberService.deleteAuthCode(telephone);
     }
 
     @RequestMapping(value = "/getExpireKey", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult getExpireKey(@RequestParam String telephone) {
+    public CommonResult<Long> getExpireKey(@RequestParam String telephone) {
         return memberService.getExpireKey(telephone);
     }
 }
