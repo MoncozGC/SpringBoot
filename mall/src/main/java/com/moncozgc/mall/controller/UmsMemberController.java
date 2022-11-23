@@ -28,7 +28,13 @@ public class UmsMemberController {
 
     @RequestMapping(value = "/verifyAuthCode", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult uodatePassword(@RequestParam String telephone, @RequestParam String authCode) {
+    public CommonResult updatePassword(@RequestParam String telephone, @RequestParam String authCode) {
         return memberService.verifyAuthCode(telephone, authCode);
+    }
+
+    @RequestMapping(value = "/deleteAuthCode", method = RequestMethod.POST)
+    @ResponseBody
+    public CommonResult deleteAuthCode(@RequestParam String telephone) {
+        return memberService.deleteAuthCode(telephone);
     }
 }

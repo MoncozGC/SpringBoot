@@ -38,6 +38,11 @@ public class RedisServiceImpl implements RedisService {
     }
 
     @Override
+    public boolean hasKey(String key) {
+        return Boolean.TRUE.equals(stringRedisTemplate.hasKey(key));
+    }
+
+    @Override
     public Long increment(String key, long delta) {
         return stringRedisTemplate.opsForValue().increment(key, delta);
     }

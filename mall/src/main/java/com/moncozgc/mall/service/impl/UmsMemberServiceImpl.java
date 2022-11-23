@@ -72,4 +72,22 @@ public class UmsMemberServiceImpl implements UmsMemberService {
             return CommonResult.failed("验证失败");
         }
     }
+
+    /**
+     * 移除手机号的key
+     *
+     * @param telephone
+     * @return 返回执行结果
+     */
+    @Override
+    public CommonResult deleteAuthCode(String telephone) {
+        String telephoneKey = REDIS_KEY_PREFIX_AUTH_CODE + telephone;
+        // 查看key是否存在
+        if (!redisService.hasKey(telephoneKey)) {
+            return CommonResult.failed("key不存在");
+        }
+        redisService.remove(telephoneKey);
+        logger.info("redis删除key: " + telephoneKey);
+        return CommonResult.success(null, telephoneKey + " key删除成功");
+    }
 }

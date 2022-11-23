@@ -37,6 +37,13 @@ public interface RedisService {
     void remove(String key);
 
     /**
+     * 判断key是否存在
+     * @param key
+     * @return 存在返回true
+     */
+    boolean hasKey(String key);
+
+    /**
      * 自增长
      *
      * @param key   键
