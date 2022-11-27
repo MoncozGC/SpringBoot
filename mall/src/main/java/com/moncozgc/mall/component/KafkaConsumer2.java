@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
  */
 @Slf4j
 @Component
-public class KafkaConsumer {
+public class KafkaConsumer2 {
     @KafkaListener(topics = "test")
     public void processMessage(String content) {
         log.info("consumer processMessage: {}", content);
