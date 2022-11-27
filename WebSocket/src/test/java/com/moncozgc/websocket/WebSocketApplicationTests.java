@@ -21,4 +21,16 @@ class WebSocketApplicationTests {
         System.out.println(Long.toHexString(ids.addAndGet(0)));
     }
 
+    @Test
+    void StringValue() {
+        String value = null;
+        if (value == null) {
+            System.out.println("为空");
+        }
+
+        String total = "portal:authCode:";
+        String tel = "15121";
+
+        System.out.println(total + tel);
+    }
 }
