@@ -41,6 +41,9 @@ public class KafkaConsumerToJava2 {
                     consumerRecords) {
                 System.out.println(consumerRecord);
             }
+
+            // 异步提交offset
+            kafkaConsumer.commitAsync();
         }
     }
 }
