@@ -9,7 +9,7 @@ import java.time.Duration;
 import java.util.Properties;
 
 /**
- * kafka消费者, 数据一直可能无法消费到数据
+ * kafka消费者 【数据一直可能无法消费到数据, 由于配置了offset的属性, 暂时注释掉】
  * 配置信息在: KafkaConsumerToJava2Properties.java
  * Created by MoncozGC on 2022/11/25
  */
