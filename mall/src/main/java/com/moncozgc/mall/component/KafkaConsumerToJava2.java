@@ -18,7 +18,8 @@ public class KafkaConsumerToJava2 {
         // 1.创建消费者的配置对象
         Properties properties = new Properties();
         // 2.给消费者配置对象添加参数
-        properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "192.168.153.100:9092");
+        KafkaConsumerProperties kafkaConsumerToJava2Properties = new KafkaConsumerProperties();
+        properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaConsumerToJava2Properties.getKafkaHost());
         // 配置序列化 必须
         properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());

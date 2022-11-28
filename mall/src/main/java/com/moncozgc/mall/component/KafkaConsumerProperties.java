@@ -9,12 +9,13 @@ import java.util.Collections;
  *
  * Created by MoncozGC on 2022/11/25
  */
-public class KafkaConsumerToJava2Properties {
+public class KafkaConsumerProperties {
 
     /**
      * Kafka主机
      */
-    private String kafkaHost = "192.168.153.100:9092";
+//    private String kafkaHost = "192.168.153.100:9092";
+    private String kafkaHost = "139.9.91.167:9092";
 
     /**
      * 生产者：要求leader请求结束前收到的确认次数，来控制发送数据的持久化
@@ -94,11 +95,11 @@ public class KafkaConsumerToJava2Properties {
      */
     private Collection<String> topic = Collections.singleton("test");
 
-    public KafkaConsumerToJava2Properties() {
+    public KafkaConsumerProperties() {
 
     }
 
-    public KafkaConsumerToJava2Properties(String kafkaHost, String ack, Integer retryTimes, Integer batchSize, Integer lingerMs, Integer bufferMemory, String keyEncoder, String valueEncoder, String groupId, String autoCommit, String autoCommitIntervalMs, String keyDecoder, String valueDecoder, String autoOffsetReset, Collection<String> topic) {
+    public KafkaConsumerProperties(String kafkaHost, String ack, Integer retryTimes, Integer batchSize, Integer lingerMs, Integer bufferMemory, String keyEncoder, String valueEncoder, String groupId, String autoCommit, String autoCommitIntervalMs, String keyDecoder, String valueDecoder, String autoOffsetReset, Collection<String> topic) {
         this.kafkaHost = kafkaHost;
         this.ack = ack;
         this.retryTimes = retryTimes;
