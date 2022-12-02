@@ -59,7 +59,7 @@ public class KafkaConsumerProperties {
     /**
      * 消费者：消费topic的组ID
      */
-    private String groupId = "bhds_erp_binlog_sync_test_group1";
+    private String groupId = "MON_IM_TE";
 
     /**
      * 消费者：后台定期提交offset

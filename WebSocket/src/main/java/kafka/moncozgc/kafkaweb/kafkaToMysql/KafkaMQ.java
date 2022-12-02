@@ -23,7 +23,7 @@ import java.util.*;
 
 public class KafkaMQ extends Thread {
 //    private static Logger logger = LoggerBuilder.getLogger("KafkaMQ");
-    private static final org.slf4j.Logger logger = LoggerFactory.getLogger(KafkaMQ.class);
+//    private static final org.slf4j.Logger logger = LoggerFactory.getLogger(KafkaMQ.class);
 
     private String topic;
     private String group;
@@ -59,7 +59,7 @@ public class KafkaMQ extends Thread {
             try{
                 consumer.commitSync();
             }catch (CommitFailedException e){
-                logger.error("commit failed msg" + e.getMessage());
+//                logger.error("commit failed msg" + e.getMessage());
             }
         }
     }

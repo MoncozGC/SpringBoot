@@ -1,5 +1,6 @@
 package com.moncozgc.mall.component;
 
+import com.moncozgc.mall.common.utils.PropertiesUtil;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
@@ -29,14 +30,19 @@ public class KafkaConsumerToJava {
 
     public static void main(String[] args) {
         try {
+            Properties properties = PropertiesUtil.loadProperties("task.properties");
             KafkaConsumerProperties kafkaConsumerToJava2Properties = new KafkaConsumerProperties();
             KafkaConsumer<String, String> consumer = getDefaultKafkaConsumer(kafkaConsumerToJava2Properties);
             consumer.subscribe(kafkaConsumerToJava2Properties.getTopic());
+            String offset = "";
             while (Boolean.TRUE) {
                 ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(1000));
                 for (ConsumerRecord<String, String> record : records) {
                     System.out.print(">>>>>>>>Consumer offset: " + record.offset() + " value: " + record.value() + "\n");
+                    offset = record.offset() + "";
                 }
+                // 写入将offset写入redis中【需要找到合适的地方写入redis中】
+//                RedisUtil.insertJedis(properties, "kafkaERP", offset);
             }
         } catch (Exception ex) {
             throw new RuntimeException(ex);

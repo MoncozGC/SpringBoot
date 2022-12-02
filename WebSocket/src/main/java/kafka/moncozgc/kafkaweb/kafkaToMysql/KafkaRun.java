@@ -24,7 +24,7 @@ public class KafkaRun {
 
         DataWriter dataWriter = new DataWriter();
         for( int i = 0; i < 32; i++ ){
-            new KafkaMQ("test","tes").start();
+            new KafkaMQ("test","te3").start();
             if( i%8 == 0 ){
                 new Thread(dataWriter).start();
             }
