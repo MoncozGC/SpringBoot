@@ -32,3 +32,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### application ###
+task.properties
+application-YKYY.yml
