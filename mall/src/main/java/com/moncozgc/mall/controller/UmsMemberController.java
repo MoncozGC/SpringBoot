@@ -2,6 +2,7 @@ package com.moncozgc.mall.controller;
 
 import com.moncozgc.mall.common.api.CommonResult;
 import com.moncozgc.mall.service.UmsMemberService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * 添加根据电话号码获取验证码的接口和校验验证码的接口
  * Created by MoncozGC on 2022/11/22
  */
+@Api(tags = "UmsMemberController", description = "会员验证")
 @Controller
 @RequestMapping("/sso")
 public class UmsMemberController {
