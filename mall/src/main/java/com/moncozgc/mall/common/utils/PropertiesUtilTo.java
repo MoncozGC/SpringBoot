@@ -6,13 +6,14 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Objects;
 import java.util.Properties;
 
 /**
  * 读取自定义配置文件中的值
  * yml配置信息可以通过注解直接获取. @Value("${xxx.xxx}") 或者 @ConfigurationProperties(prefix = "xxxx") https://blog.csdn.net/qq_35387940/article/details/106209485
  *
- * Created by pengqi on 2022/12/5
+ * Created by MoncozGC on 2022/12/5
  */
 public class PropertiesUtilTo {
 
@@ -24,7 +25,7 @@ public class PropertiesUtilTo {
         properties = new Properties();
 
         try {
-            properties.load(new InputStreamReader(PropertiesUtil.class.getClassLoader().getResourceAsStream(fileName)));
+            properties.load(new InputStreamReader(Objects.requireNonNull(PropertiesUtil.class.getClassLoader().getResourceAsStream(fileName))));
         } catch (IOException e) {
             log.error("配置文件读取异常", e);
         }

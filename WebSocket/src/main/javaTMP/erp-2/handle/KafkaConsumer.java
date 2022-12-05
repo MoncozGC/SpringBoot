@@ -8,7 +8,7 @@ import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 
 /**
- * Created by pengqi on 2022/11/25
+ * Created by MoncozGC on 2022/11/25
  */
 public class KafkaConsumer {
     public static void main(String[] args) {
