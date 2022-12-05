@@ -78,7 +78,7 @@ public class QRCodeController {
     @RequestMapping(value = "/QRCodeBase64ToPic", method = RequestMethod.POST, produces = "application/json")
     @ResponseBody
     public CommonResult<Object> Base64ToImg2(@RequestBody Base64Dto base64Dto) throws IOException {
-        QRCodeUtil.GenerateImage(base64Dto, System.getProperty("user.dir") + "\\mall\\src\\main\\data");
+        QRCodeUtil.GenerateImage(base64Dto, System.getProperty("user.dir") + "\\mall\\src\\main\\data\\");
         log.info(">>> base64Topic完成");
         return CommonResult.success("转换成功");
     }

@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 /**
- * Created by pengqi on 2022/12/5
+ * Created by MoncozGC on 2022/12/5
  */
 @SpringBootTest
 public class encryptorTest {
@@ -38,6 +38,11 @@ public class encryptorTest {
 
         System.out.println(password);
 
+    }
 
+
+    @Test
+    void conversion() {
+        System.out.println(System.getProperty("user.dir"));
     }
 }
