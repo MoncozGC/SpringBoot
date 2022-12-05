@@ -4,10 +4,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.env.Environment;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
+@EnableScheduling // 定时任务执行功能注解
 @SpringBootApplication
 public class MallApplication {
 
@@ -17,7 +19,7 @@ public class MallApplication {
         String ip = InetAddress.getLocalHost().getHostAddress();
         String port = env.getProperty("server.port");
         String property = env.getProperty("server.servlet.context-path");
-        String path = property == null ? "" :  property;
+        String path = property == null ? "" : property;
         System.out.println(
                 "\n\t" +
                         "----------------------------------------------------------\n\t" +
