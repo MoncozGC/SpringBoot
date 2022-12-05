@@ -32,7 +32,7 @@ spring:
     consumer:
       group-id: "MON_TEST"
       enable-auto-commit: false # 关闭自动提交
-      auto-offset-reset: earliest # 当各分区下有已提交的offset时，从提交的offset开始消费；无提交的offset时，从头开始消费
+      auto-offset-reset: latest # earliest：消费者恢复到当前topic最早的offset; latest：消费者从最新的offset开始消费
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
     listener:
@@ -66,3 +66,9 @@ redis:
     expire:
       # 验证码超期时间(秒)
       authCode: 120
+
+
+#jasypt加密的密匙 jasypt.encryptor.password=JCCCCgd6Tsjckd87xGy6H1JGb47G2H72
+#jasypt:
+#  encryptor:
+#    password: JCCCCgd6Tsjckd87xGy6H1JGb47G2H72
