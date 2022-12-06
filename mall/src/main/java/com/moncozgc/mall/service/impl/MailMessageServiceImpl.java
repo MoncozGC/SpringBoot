@@ -120,4 +120,36 @@ public class MailMessageServiceImpl implements MailMessageService {
         return true;
     }
 
+    @Override
+    public boolean sendMailMessageAuthCode(String phone, String code) {
+        try {
+            MimeMessage mimeMailMessage = javaMailSender.createMimeMessage();
+            MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMailMessage, true);
+
+            // 发送邮件的邮箱地址
+            mimeMessageHelper.setFrom(SENDER_EMAIL);
+            // 抄送的邮箱地址 【可以设置多个, 多个时采取数组】
+            mimeMessageHelper.setCc(SENDER_EMAIL);
+            // 邮件接受的邮箱地址
+            mimeMessageHelper.setTo("183966516@qq.com");
+            mimeMessageHelper.setSubject("邮件主题");
+            mimeMessageHelper.setSentDate(new Date());
+
+            HashMap<String, Object> mailMap = new HashMap<>();
+            mailMap.put("phone", phone);
+            mailMap.put("authCode", code);
+            // mail.ftl中有两个变量, 也就是map需要去替换掉的值
+            Template template = freeMarkerConfigurer.getConfiguration().getTemplate("authenticationMail.ftl");
+            String text = FreeMarkerTemplateUtils.processTemplateIntoString(template, mailMap);
+            mimeMessageHelper.setText(text, true);
+
+            javaMailSender.send(mimeMailMessage);
+        } catch (Exception e) {
+            e.printStackTrace();
+            LOGGER.info("HTML邮件发送失败");
+            return false;
+        }
+        LOGGER.info("HTML邮件发送成功");
+        return true;
+    }
 }

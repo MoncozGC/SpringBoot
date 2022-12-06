@@ -15,7 +15,7 @@
         <tr>
             <th valign="middle"
                 style="height: 25px; line-height: 25px; padding: 15px 35px; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: RGB(148,0,211); background-color: RGB(148,0,211); border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px;">
-                <font face="微软雅黑" size="5" style="color: rgb(255, 255, 255); ">这里输入name</font>
+                <font face="微软雅黑" size="5" style="color: rgb(255, 255, 255); ">MoncozGC</font>
             </th>
         </tr>
         <tr>
@@ -25,20 +25,20 @@
                     <h2 style="margin: 5px 0px; ">
                         <font color="#333333" style="line-height: 20px; ">
                             <font style="line-height: 22px; " size="4">
-                                尊敬的用户：</font>
+                                尊敬的${phone}：</font>
                         </font>
                     </h2>
                     <!-- 中文 -->
-                    <p>您好！感谢您使用****，您的账号正在进行邮箱验证，验证码为：<font color="#ff8c00">{0}</font>，有效期30分钟，请尽快填写验证码完成验证！</p><br>
+                    <p>您好！感谢您使用****，您的账号正在进行邮箱验证，验证码为：<font color="#ff8c00">${authCode}</font>，有效期2分钟，请尽快填写验证码完成验证！</p><br>
                     <!-- 英文 -->
                     <h2 style="margin: 5px 0px; ">
                         <font color="#333333" style="line-height: 20px; ">
                             <font style="line-height: 22px; " size="4">
-                                Dear user:</font>
+                                Dear ${phone}:</font>
                         </font>
                     </h2>
-                    <p>Hello! Thanks for using *****, your account is being authenticated by email, the
-                        verification code is:<font color="#ff8c00">{0}</font>, valid for 30 minutes. Please fill in the verification code as soon as
+                    <p>Hello! Thanks for using your account is being authenticated by email, the
+                        verification code is:<font color="#ff8c00">${authCode}</font>, valid for 2 minutes. Please fill in the verification code as soon as
                         possible!</p>
                     <div style="width:100%;margin:0 auto;">
                         <div style="padding:10px 10px 0;border-top:1px solid #ccc;color:#747474;margin-bottom:20px;line-height:1.3em;font-size:12px;">

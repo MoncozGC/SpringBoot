@@ -14,4 +14,9 @@ public interface MailMessageService {
      * 发送html模板格式邮件信息
      */
     boolean sendSimpleMailMessageHtml();
+
+    /**
+     * 根据模板文件发送验证码邮件
+     */
+    boolean sendMailMessageAuthCode(String phone, String code);
 }

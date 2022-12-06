@@ -2,6 +2,7 @@ package com.moncozgc.mall.service.impl;
 
 import com.moncozgc.mall.common.api.CommonResult;
 import com.moncozgc.mall.controller.UmsMemberController;
+import com.moncozgc.mall.service.MailMessageService;
 import com.moncozgc.mall.service.RedisService;
 import com.moncozgc.mall.service.UmsMemberService;
 import org.slf4j.Logger;
@@ -24,6 +25,8 @@ public class UmsMemberServiceImpl implements UmsMemberService {
 
     @Autowired
     private RedisService redisService;
+    @Autowired
+    private MailMessageService mailMessageService;
     @Value("${redis.key.prefix.authCode}")
     private String REDIS_KEY_PREFIX_AUTH_CODE;
     @Value("${redis.key.expire.authCode}")
@@ -50,6 +53,8 @@ public class UmsMemberServiceImpl implements UmsMemberService {
         redisService.set(REDIS_KEY_PREFIX_AUTH_CODE + telephone, sb.toString());
         redisService.expire(REDIS_KEY_PREFIX_AUTH_CODE + telephone, REDIS_KEY_EXPIRE_AUTH_CODE);
         logger.info("手机号: " + telephone + ", 生成的验证码:" + sb);
+        // 获取到验证码调用发送邮箱接口, 根据邮件模板发送邮件
+        mailMessageService.sendMailMessageAuthCode(telephone, sb.toString());
         return CommonResult.success(sb.toString(), "获取验证码成功");
     }
 
