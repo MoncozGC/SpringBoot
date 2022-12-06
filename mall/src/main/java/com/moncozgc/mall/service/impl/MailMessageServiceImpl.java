@@ -2,7 +2,6 @@ package com.moncozgc.mall.service.impl;
 
 import com.moncozgc.mall.controller.MailController;
 import com.moncozgc.mall.service.MailMessageService;
-import freemarker.template.Configuration;
 import freemarker.template.Template;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,8 +31,6 @@ public class MailMessageServiceImpl implements MailMessageService {
 
     @Autowired
     private JavaMailSender javaMailSender;
-    @Autowired
-    private Configuration configuration;
     @Autowired
     FreeMarkerConfigurer freeMarkerConfigurer;
 
