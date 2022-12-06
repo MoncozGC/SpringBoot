@@ -19,6 +19,21 @@ import java.util.Date;
 import java.util.HashMap;
 
 /**
+ * 邮件发送Service
+ * https://juejin.cn/post/6992371786184818719
+ *
+ * JavaMailSender: 直接作为一个Spring 的bean对象使用
+ * SimpleMailMessage：简单的邮件对象，里面有一些邮件发送时，关联的基础信息
+ *
+ * from: 发送方
+ * replyTo: 邮件回复的收件人
+ * to: 收件人
+ * cc: 抄送
+ * bcc: 密送
+ * subject: 主题，也就是邮件标题
+ * text: 邮件正文，文本格式
+ * date: 邮件发送时间
+ *
  * Created by MoncozGC on 2022/12/6
  */
 @Service
@@ -86,7 +101,7 @@ public class MailMessageServiceImpl implements MailMessageService {
             mailMap.put("title", "HTML邮件主题");
             mailMap.put("content", "HTML邮件正文");
             // mail.ftl中有两个变量, 也就是map需要去替换掉的值
-            Template template = freeMarkerConfigurer.getConfiguration().getTemplate("authenticationMail.ftl");
+            Template template = freeMarkerConfigurer.getConfiguration().getTemplate("mail.ftl");
             String text = FreeMarkerTemplateUtils.processTemplateIntoString(template, mailMap);
             mimeMessageHelper.setText(text, true);
 
