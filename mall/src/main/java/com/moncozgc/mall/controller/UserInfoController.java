@@ -1,6 +1,7 @@
 package com.moncozgc.mall.controller;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.util.StrUtil;
 import com.moncozgc.mall.annotation.TokenCheck;
 import com.moncozgc.mall.annotation.TokenPass;
 import com.moncozgc.mall.common.api.CommonResult;
@@ -57,12 +58,16 @@ public class UserInfoController {
     @TokenPass
     @PostMapping("/register")
     public CommonResult<Object> register(@RequestBody Map<String, Object> userInfo) {
-        User username = userService.getUserInfoByName(String.valueOf(userInfo.get("username")));
-        if (BeanUtil.isEmpty(username)) return CommonResult.failed("用户名已存在, 注册失败");
+        String username = String.valueOf(userInfo.get("username"));
+        String password = String.valueOf(userInfo.get("password"));
+        User dbUserName = userService.getUserInfoByName(username);
+
+        if (StrUtil.hasEmpty(username) || StrUtil.hasEmpty(password)) return CommonResult.failed("注册失败, 用户名或密码为空");
+        if (!BeanUtil.isEmpty(dbUserName)) return CommonResult.failed("注册失败, 用户名已存在");
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        String encodePwd = bCryptPasswordEncoder.encode(String.valueOf(userInfo.get("password")));
+        String encodePwd = bCryptPasswordEncoder.encode(password);
         User User = new User();
-        User.setUI_USER_NAME(String.valueOf(userInfo.get("username")));
+        User.setUI_USER_NAME(username);
         User.setUI_PASSWORD(encodePwd);
         User.setUI_STATUS("0");
         User.setUI_CREATE_TIME(System.currentTimeMillis());
