@@ -1,5 +1,6 @@
 package com.moncozgc.mall;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -10,7 +11,11 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 @EnableScheduling // 定时任务执行功能注解
-@SpringBootApplication
+//@EnableGlobalMethodSecurity(prePostEnabled = true)
+@MapperScan(basePackages = "com.moncozgc.mall.mapper")
+@SpringBootApplication(exclude = {org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration.class,
+        org.springframework.boot.actuate.autoconfigure.security.servlet.ManagementWebSecurityAutoConfiguration.class}
+        , scanBasePackages = "com.moncozgc.mall")
 public class MallApplication {
 
     public static void main(String[] args) throws UnknownHostException {
