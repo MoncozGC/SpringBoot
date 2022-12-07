@@ -126,6 +126,11 @@
             <artifactId>java-jwt</artifactId>
             <version>4.2.1</version>
         </dependency>
+        <!-- 认证 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
         <!-- 解决打包时无法找到jaxb包的问题 -->
         <dependency>
             <groupId>javax.xml.bind</groupId>
