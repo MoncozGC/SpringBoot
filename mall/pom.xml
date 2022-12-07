@@ -45,7 +45,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-<!--            <version>8.0.15</version>-->
+            <!--            <version>8.0.15</version>-->
         </dependency>
         <!--MyBatis分页插件-->
         <dependency>
@@ -85,7 +85,7 @@
         <dependency>
             <groupId>org.springframework.kafka</groupId>
             <artifactId>spring-kafka</artifactId>
-<!--            <version>2.7.1</version>-->
+            <!--            <version>2.7.1</version>-->
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -120,7 +120,7 @@
             <artifactId>javase</artifactId>
             <version>3.3.3</version>
         </dependency>
-        <!--开源的工具类: http://hutool.mydoc.io/; https://hutool.cn/docs/#/-->
+        <!--开源的工具类: http://hutool.mydoc.io/; https://hutool.cn/docs/#/ -->
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
@@ -137,21 +137,24 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
-        <!-- 解决打包时无法找到jaxb包的问题 -->
+        <!-- 解决打包时无法找到jaxb包的问题. 一般时JDK11的问题 -->
         <dependency>
             <groupId>javax.xml.bind</groupId>
             <artifactId>jaxb-api</artifactId>
             <version>2.3.0</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.sun.xml.bind</groupId>
             <artifactId>jaxb-impl</artifactId>
             <version>2.3.0</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.glassfish.jaxb</groupId>
             <artifactId>jaxb-runtime</artifactId>
             <version>2.3.0</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>javax.activation</groupId>
