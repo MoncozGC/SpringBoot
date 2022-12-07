@@ -19,6 +19,10 @@ import java.util.Map;
 /**
  * 用户登录注册, token验证
  * https://blog.csdn.net/qq_35387940/article/details/103307346
+ *
+ * 用户注册: 使用Spring Security的BCryptPasswordEncoder进行密码加密, 存库
+ * 用户登录: 查库, 使用Spring Security的BCryptPasswordEncoder进行密码校验. 若登录成功返回JWT生成带有过期时间的token
+ * token校验: 使用JWT token校验, 错误或者过去则拦截, 正常则继续访问
  */
 @RestController
 @RequestMapping("/user")
