@@ -17,6 +17,7 @@ public interface MailMessageService {
 
     /**
      * 根据模板文件发送验证码邮件
+     * 在调用redis获取验证码时, 如果账户为邮件则发送邮件
      */
     boolean sendMailMessageAuthCode(String phone, String code);
 }
