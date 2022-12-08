@@ -1,6 +1,7 @@
 package com.moncozgc.mall.controller;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.StrUtil;
 import com.moncozgc.mall.annotation.TokenCheck;
 import com.moncozgc.mall.annotation.TokenPass;
@@ -43,7 +44,7 @@ public class UserInfoController {
      * @param userName 账户名
      */
     @TokenCheck
-    @GetMapping("/getUserByName/{userName}")
+    @RequestMapping(value = "/getUserByName/{userName}", method = RequestMethod.GET)
     public String getUser(@PathVariable("userName") String userName) {
         User userInfoByName = userService.getUserInfoByName(userName);
         return userInfoByName.toString();
@@ -56,7 +57,7 @@ public class UserInfoController {
      * @param userInfo 用户信息
      */
     @TokenPass
-    @PostMapping("/register")
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
     public CommonResult<Object> register(@RequestBody Map<String, Object> userInfo) {
         String username = String.valueOf(userInfo.get("username"));
         String password = String.valueOf(userInfo.get("password"));
@@ -86,7 +87,7 @@ public class UserInfoController {
      *
      * @param user 用户信息
      */
-    @PostMapping("/login")
+    @RequestMapping(value = "/login", method = {RequestMethod.GET, RequestMethod.POST})
     public Map<String, Object> login(@RequestBody Map<String, Object> user) {
         Map<String, Object> result = new HashMap<>();
         User userForBase = userService.getUserInfoByName(String.valueOf(user.get("username")));
@@ -117,7 +118,7 @@ public class UserInfoController {
      * 检测token是否生效
      */
     @TokenCheck
-    @GetMapping("/afterLogin")
+    @RequestMapping(value = "/afterLogin", method = RequestMethod.GET)
     public String afterLogin() {
 
         return "你已通过验证,成功进入系统";
