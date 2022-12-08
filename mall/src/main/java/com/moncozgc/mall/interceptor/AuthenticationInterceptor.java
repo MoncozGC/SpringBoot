@@ -21,7 +21,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Method;
 
 /**
- * 登录拦截器，主要用于校验token
+ * HandlerInterceptor接口实现拦截器，主要用于校验token
+ * preHandle方法：此方法会在进入controller之前执行，返回Boolean值决定是否执行后续操作。
+ * postHandle方法：此方法将在controller执行之后执行，但是视图还没有解析，可向ModelAndView中添加数据(前后端不分离的)。
+ * afterCompletion方法：该方法会在整个请求结束（请求结束，但是并未返回结果给客户端）之后执行， 可获取响应数据及异常信息。
  */
 public class AuthenticationInterceptor implements HandlerInterceptor {
     @Autowired
