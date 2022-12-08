@@ -4,6 +4,9 @@ import com.moncozgc.mall.common.api.CommonResult;
 import com.moncozgc.mall.common.utils.QRCodeUtil;
 import com.moncozgc.mall.dto.Base64Dto;
 import com.moncozgc.mall.service.impl.TaskServiceImpl;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +22,7 @@ import java.io.IOException;
  * @author rcbb.cc
  * @date 2022/8/28
  */
+@Api(tags = "二维码接口")
 @RestController
 @RequestMapping("/qrcode")
 public class QRCodeController {
@@ -34,8 +38,10 @@ public class QRCodeController {
      * @param width   图片宽度
      * @param height  图片高度
      */
+    @ApiOperation("生成二维码base64")
     @GetMapping("/getQRCodeBase64")
-    public CommonResult<Object> getQRCode(@RequestParam("content") String content,
+    public CommonResult<Object> getQRCode(@ApiParam(name = "content", value = "文本内容")
+                                          @RequestParam("content") String content,
                                           @RequestParam(value = "logoUrl", required = false) String logoUrl,
                                           @RequestParam(value = "width", required = false) Integer width,
                                           @RequestParam(value = "height", required = false) Integer height) {
@@ -54,6 +60,7 @@ public class QRCodeController {
      * @param content  文本内容
      * @param logoUrl  图标地址
      */
+    @ApiOperation("生成二维码图片")
     @GetMapping(value = "/getQRCode")
     public void getQRCode(HttpServletResponse response,
                           @RequestParam("content") String content,
@@ -79,8 +86,9 @@ public class QRCodeController {
      *
      * @param base64Dto base64
      */
-    @RequestMapping(value = "/QRCodeBase64ToPic", method = RequestMethod.POST, produces = "application/json")
+    @ApiOperation("base64转换为图片")
     @ResponseBody
+    @RequestMapping(value = "/QRCodeBase64ToPic", method = RequestMethod.POST, produces = "application/json")
     public CommonResult<Object> Base64ToImg2(@RequestBody Base64Dto base64Dto) throws IOException {
         QRCodeUtil.GenerateImage(base64Dto, System.getProperty("user.dir") + "\\");
         LOGGER.info(">>> base64Topic完成");

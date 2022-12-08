@@ -9,6 +9,9 @@ import com.moncozgc.mall.common.api.CommonResult;
 import com.moncozgc.mall.dto.User;
 import com.moncozgc.mall.service.TokenService;
 import com.moncozgc.mall.service.UserInfoService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -26,6 +29,7 @@ import java.util.Map;
  * 用户登录: 查库, 使用Spring Security的BCryptPasswordEncoder进行密码校验. 若登录成功返回JWT生成带有过期时间的token
  * token校验: 使用JWT token校验, 错误或者过去则拦截, 正常则继续访问
  */
+@Api(tags = "用户管理接口")
 @RestController
 @RequestMapping("/user")
 public class UserInfoController {
@@ -43,11 +47,13 @@ public class UserInfoController {
      *
      * @param userName 账户名
      */
+    @ApiOperation("获取用户信息")
     @TokenCheck
-    @RequestMapping(value = "/getUserByName/{userName}", method = RequestMethod.GET)
-    public String getUser(@PathVariable("userName") String userName) {
+    @RequestMapping(value = "/getUserByName/{username}", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public CommonResult<Object> getUser(@PathVariable("username") String userName) {
         User userInfoByName = userService.getUserInfoByName(userName);
-        return userInfoByName.toString();
+        return CommonResult.success(userInfoByName.toString(), "获取用户信息成功");
 
     }
 
@@ -56,6 +62,7 @@ public class UserInfoController {
      *
      * @param userInfo 用户信息
      */
+    @ApiOperation("用户注册")
     @TokenPass
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public CommonResult<Object> register(@RequestBody Map<String, Object> userInfo) {
@@ -87,7 +94,8 @@ public class UserInfoController {
      *
      * @param user 用户信息
      */
-    @RequestMapping(value = "/login", method = {RequestMethod.GET, RequestMethod.POST})
+    @ApiOperation("用户登录")
+    @RequestMapping(value = "/login", method = {RequestMethod.POST})
     public Map<String, Object> login(@RequestBody Map<String, Object> user) {
         Map<String, Object> result = new HashMap<>();
         User userForBase = userService.getUserInfoByName(String.valueOf(user.get("username")));
@@ -117,8 +125,10 @@ public class UserInfoController {
     /**
      * 检测token是否生效
      */
+    @ApiOperation("检测token")
+    @ApiImplicitParam(name = "accessToken", required = false, paramType = "header", dataType = "String")
     @TokenCheck
-    @RequestMapping(value = "/afterLogin", method = RequestMethod.GET)
+    @RequestMapping(value = "/afterLogin", method = RequestMethod.POST)
     public String afterLogin() {
 
         return "你已通过验证,成功进入系统";
