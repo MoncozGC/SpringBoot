@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * 发送邮件Controller
- *
+ * https://blog.csdn.net/qq_35387940/article/details/98599884
  * Created by MoncozGC on 2022/12/6
  */
 @Api(tags = "邮件接口")
