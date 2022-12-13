@@ -82,7 +82,7 @@ public class QRCodeController {
     }
 
     /**
-     * base64转换为图片
+     * base64转换为图片并保存至本地(后续可上传图床)
      *
      * @param base64Dto base64
      */
