@@ -33,12 +33,12 @@ public class PythonServiceImpl implements PythonService {
             new InputStreamReader(proc.getInputStream());
             String line = null;
             while ((line = in.readLine()) != null) {
-                System.out.println(line);
+                log.info("line: " + line);
             }
             in.close();
             //waitFor是用来显示脚本是否运行成功，1表示失败，0表示成功，还有其他的表示其他错误
             int re = proc.waitFor();
-            System.out.println(re);
+            log.info("执行状态: " + re);
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }

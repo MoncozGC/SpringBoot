@@ -19,9 +19,10 @@ public class PythonController {
     private PythonService pythonService;
 
     @ApiOperation("python接口测试")
-    @RequestMapping(value = "/py_debug", method = RequestMethod.POST)
-    public void PythonDebug() {
+    @RequestMapping(value = "/py_debug", method = RequestMethod.GET)
+    public CommonResult<Object> PythonDebug() {
         pythonService.PythonDebugImpl();
+        return CommonResult.success("Python调用测试成功");
     }
 
     @ApiOperation("python-根据指定文件筛选指定列")
