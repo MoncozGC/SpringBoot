@@ -5,7 +5,7 @@
 
 ## 整合redis实现缓存功能
 
-## 整个Kafka实现订阅功能
+## 整合Kafka实现订阅功能
 
 1. 启动SpringBoot
 2. 服务器启动消费者, /ykyy/kafka/bin/kafka-topics.sh --bootstrap-server 192.168.0.46:9092 --topic test --from-beginning
