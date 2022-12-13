@@ -10,10 +10,12 @@ import pandas as pd
 
 nowDate = "_" + datetime.now().strftime('%Y%m%d%H%M%S')
 
+# 指定文件路径
+file_path = sys.argv[1]
 # 指定文件名称
-file_str = sys.argv[1]
+file_name = sys.argv[2]
 # 指定列
-choice_colum = sys.argv[2]
+choice_colum = sys.argv[3]
 
 
 # 输入参数为excel表格所在目录及文件名
@@ -31,15 +33,13 @@ def to_files_excel2(root_dir, file):
             # df = pd.read_excel(file_name)
             df_1 = list(pd.read_excel(file_name, nrows=1))  # 读取excel第一行数据并放进列表
             # excel第一行数据返回列表
-            print(file_name)
-            print(type(df_1))
-            print(df_1)
+            print("Specified file for operation: ", file_name)
+            print("Excel Export Column: ", choice_colum)
             # 获取进入的文件名
             result_file_str = file.split('.')[0]
 
             # 读取文件内容  usecols=[1, 3, 4] 读取第1,3,4列
-            df = pd.read_excel(file_name, usecols=choice_colum,
-                               sheet_name='Sheet1', dtype=object)
+            df = pd.read_excel(file_name, usecols=choice_colum, sheet_name='0', dtype=object)
 
             # pf = pd.read_excel('xxx.xls', usecols=[1, 3, 4], sheet_name='data')
             # print(pf)
@@ -57,4 +57,5 @@ def to_files_excel2(root_dir, file):
 
 if __name__ == '__main__':
     # 调用并执行函数
-    to_files_excel2(r'D:\ERP', [file_str])
+    print("Prepare to execute python program...")
+    to_files_excel2(file_path, [file_name])

@@ -7,15 +7,15 @@ import com.moncozgc.mall.dto.ExportExcelERP;
  */
 public interface PythonService {
     /**
-     * 调用python程序测试
+     * 测试python程序测试
      */
     void PythonDebugImpl();
 
     /**
-     * 根据文件导出指定列
+     * 根据指定文件筛选指定列到新文件
+     * waitFor()返回值含义: https://blog.csdn.net/qq_36838191/article/details/90438876
      *
-     * @param FileStr     文件名称 xx.xlsx
-     * @param ChoiceColum 指定列 eg: A,B,C,D
+     * @param exportExcelERP 导出实体类
      */
-    void PythonToExcelImpl(ExportExcelERP exportExcelERP);
+    int PythonToExcelImpl(ExportExcelERP exportExcelERP);
 }

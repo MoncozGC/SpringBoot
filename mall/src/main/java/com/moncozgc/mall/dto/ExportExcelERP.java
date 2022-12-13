@@ -10,6 +10,8 @@ import lombok.Data;
 @Data
 @ApiModel
 public class ExportExcelERP {
+    @ApiModelProperty(value = "指定的文件路径")
+    private String file_path;
     @ApiModelProperty(value = "指定的文件名称")
     private String file_name;
     @ApiModelProperty(value = "指定导出的列")
