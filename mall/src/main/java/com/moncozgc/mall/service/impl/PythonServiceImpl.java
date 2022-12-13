@@ -3,6 +3,7 @@ package com.moncozgc.mall.service.impl;
 import com.moncozgc.mall.dto.ExportExcelERP;
 import com.moncozgc.mall.service.PythonService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
@@ -16,8 +17,9 @@ import java.io.InputStreamReader;
 @Service
 public class PythonServiceImpl implements PythonService {
 
-    private final String PYTHON_SYS_ENV = "D:\\File\\YKYY\\Work File\\IntelliJ IDEA\\YKYY-PyCharm\\Employ\\venv\\Scripts\\python.exe";
-    private final String PYTHON_RUN_PATH = "D:\\File\\YKYY\\Work File\\IntelliJ IDEA\\YKYY-UseProject\\SpringBootEmploy\\mall\\src\\main\\python\\";
+    @Value("${python.parser.path}")
+    private String PYTHON_SYS_ENV;
+    private final String PYTHON_RUN_PATH = System.getProperty("user.dir") + "\\mall\\src\\main\\python\\";
 
     @Override
     public void PythonDebugImpl() {
