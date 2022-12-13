@@ -47,10 +47,21 @@ public class CommonResult<T> {
 
     /**
      * 失败返回结果
+     *
      * @param message 提示信息
      */
     public static <T> CommonResult<T> failed(String message) {
         return new CommonResult<T>(ResultCode.FAILED.getCode(), message, null);
+    }
+
+    /**
+     * 失败返回结果
+     *
+     * @param data    获取的数据
+     * @param message 提示信息
+     */
+    public static <T> CommonResult<T> failed(T data, String message) {
+        return new CommonResult<T>(ResultCode.FAILED.getCode(), message, data);
     }
 
     /**
