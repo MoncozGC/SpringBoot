@@ -23,5 +23,5 @@
 
 ## WebSocket
 
-- SpringBoot使用WebSocket通过STOMP进行前后端交互. 实现一个广播/点对点(订阅)的形式。
+- SpringBoot使用WebSocket通过STOMP进行前后端交互. 实现一个广播/点对点(订阅)的形式
 
