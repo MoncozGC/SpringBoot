@@ -3,6 +3,7 @@ package com.moncozgc.mall.service.impl;
 import com.moncozgc.mall.dto.ExportExcelERP;
 import com.moncozgc.mall.service.PythonService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
@@ -16,15 +17,17 @@ import java.io.InputStreamReader;
 @Service
 public class PythonServiceImpl implements PythonService {
 
-    private final String PYTHON_SYS_ENV = "D:\\File\\YKYY\\Work File\\IntelliJ IDEA\\YKYY-PyCharm\\Employ\\venv\\Scripts\\python.exe";
-    private final String PYTHON_RUN_PATH = "D:\\File\\YKYY\\Work File\\IntelliJ IDEA\\YKYY-UseProject\\SpringBootEmploy\\mall\\src\\main\\python\\";
+    @Value("${python.parser.path}")
+    private String PYTHON_SYS_ENV;
+    private final String PYTHON_RUN_PATH = System.getProperty("user.dir") + "\\mall\\src\\main\\python\\";
 
     @Override
-    public void PythonDebugImpl() {
+    public int PythonDebugImpl() {
         String PythonScript = PYTHON_RUN_PATH + "spring_debug.py";
         //前面一半是本地环境下的python的启动文件地址，后面一半是要执行的python脚本地址
         String[] arguments = new String[]{PYTHON_SYS_ENV, PythonScript};
         Process proc;
+        int re = 0;
         try {
 
             proc = Runtime.getRuntime().exec(arguments);// 执行py文件
@@ -37,11 +40,12 @@ public class PythonServiceImpl implements PythonService {
             }
             in.close();
             //waitFor是用来显示脚本是否运行成功，1表示失败，0表示成功，还有其他的表示其他错误
-            int re = proc.waitFor();
+            re = proc.waitFor();
             log.info("执行状态: " + re);
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
+        return re;
     }
 
     @Override

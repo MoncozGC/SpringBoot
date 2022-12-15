@@ -9,7 +9,7 @@ public interface PythonService {
     /**
      * 测试python程序测试
      */
-    void PythonDebugImpl();
+    int PythonDebugImpl();
 
     /**
      * 根据指定文件筛选指定列到新文件
