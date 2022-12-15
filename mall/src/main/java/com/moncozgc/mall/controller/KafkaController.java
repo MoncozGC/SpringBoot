@@ -32,7 +32,7 @@ public class KafkaController {
     public CommonResult<String> sendMessage(@ApiParam(name = "message", value = "发送的消息")
                                             @RequestParam String message) {
         Date date = new Date();
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         kafkaProducer.send("消息发送: " + format.format(date));
         return CommonResult.success(message, format.format(date));
     }
