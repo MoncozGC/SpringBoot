@@ -1,0 +1,392 @@
+{
+  "info": {
+    "_postman_id": "25d9f380-efb0-4621-9e97-773e2bbb7ffe",
+    "name": "Project-MALL",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "用户-注册接口",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"username\":\"test\",\r\n    \"password\":\"123456\",\r\n    \"roles\":\"ROLE_ADMIN\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{host}}/user/register",
+          "host": [
+            "{{host}}"
+          ],
+          "path": [
+            "user",
+            "register"
+          ]
+        },
+        "description": "用户注册"
+      },
+      "response": []
+    },
+    {
+      "name": "用户-登录接口",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"username\":\"test\",\r\n    \"password\":\"123456\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{host}}/user/login",
+          "host": [
+            "{{host}}"
+          ],
+          "path": [
+            "user",
+            "login"
+          ],
+          "query": [
+            {
+              "key": "username",
+              "value": "test",
+              "disabled": true
+            },
+            {
+              "key": "password",
+              "value": "123456",
+              "disabled": true
+            }
+          ]
+        },
+        "description": "用户登录, 获取token"
+      },
+      "response": []
+    },
+    {
+      "name": "用户-获取信息接口",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "token",
+            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxOSIsImV4cCI6MTY3MDQ4NjE3N30.TFMdea2AMTk5_lVWN5X8a3R-dOlQVeTUlQ6Hz-TXNnk",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{host}}/user/getUserByName/test",
+          "host": [
+            "{{host}}"
+          ],
+          "path": [
+            "user",
+            "getUserByName",
+            "test"
+          ]
+        },
+        "description": "根据用户名获取用户信息.\r\n注: 请求头中需要带有token信息"
+      },
+      "response": []
+    },
+    {
+      "name": "用户-验证token是否生效接口",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "token",
+            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxOSIsImV4cCI6MTY3MDQ4NjE3N30.TFMdea2AMTk5_lVWN5X8a3R-dOlQVeTUlQ6Hz-TXNnk",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{host}}/user/afterLogin",
+          "host": [
+            "{{host}}"
+          ],
+          "path": [
+            "user",
+            "afterLogin"
+          ]
+        },
+        "description": "用户验证通过接口, 验证token是否有效.\r\n注: 请求头中需要token信息"
+      },
+      "response": []
+    },
+    {
+      "name": "用户会员-获取验证码",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{host}}/sso/getAuthCode?telephone=21512",
+          "host": [
+            "{{host}}"
+          ],
+          "path": [
+            "sso",
+            "getAuthCode"
+          ],
+          "query": [
+            {
+              "key": "telephone",
+              "value": "21512"
+            }
+          ]
+        },
+        "description": "根据账户名获取验证码, 如果账户为邮件则会发送邮件给该用户"
+      },
+      "response": []
+    },
+    {
+      "name": "用户会员-判断验证码是否正确",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "{{host}}/sso/verifyAuthCode?telephone=21512&authCode=4565863",
+          "host": [
+            "{{host}}"
+          ],
+          "path": [
+            "sso",
+            "verifyAuthCode"
+          ],
+          "query": [
+            {
+              "key": "telephone",
+              "value": "21512"
+            },
+            {
+              "key": "authCode",
+              "value": "4565863"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Kafka-生产者",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{host}}/kafka/sendMessage?message=触发生产者",
+          "host": [
+            "{{host}}"
+          ],
+          "path": [
+            "kafka",
+            "sendMessage"
+          ],
+          "query": [
+            {
+              "key": "message",
+              "value": "触发生产者"
+            }
+          ]
+        },
+        "description": "消息目前设置为固定格式\r\n消息体: \"消息发送: {当前时间}\""
+      },
+      "response": []
+    },
+    {
+      "name": "二维码-生成二维码base64编码",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{host}}/qrcode/getQRCodeBase64?content=https://www.baidu.com&logoUrl=https://www.baidu.com&width=100&height=100",
+          "host": [
+            "{{host}}"
+          ],
+          "path": [
+            "qrcode",
+            "getQRCodeBase64"
+          ],
+          "query": [
+            {
+              "key": "content",
+              "value": "https://www.baidu.com"
+            },
+            {
+              "key": "logoUrl",
+              "value": "https://www.baidu.com"
+            },
+            {
+              "key": "width",
+              "value": "100"
+            },
+            {
+              "key": "height",
+              "value": "100"
+            }
+          ]
+        },
+        "description": "生成base64编码的二维码图片.\r\n可设置log及图片大小"
+      },
+      "response": []
+    },
+    {
+      "name": "二维码-生成二维码图片",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{host}}/qrcode/getQRCode?content=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAIAAAD/gAIDAAABhklEQVR42u3aS5LDIAwFQN//0jOLWU5VKqAnDHaz9Dd0KoqQuH6Mr8eFABYsWLBgwUIACxYsWC/Gumrjw3P+n/rw9m+OFD8hLFj7Y439wkcmOfSuubvq84IFayusoQg1N8nUxXOBEhasp2L1BRRYsGCNxqy5vD+V08OC9Qys4l3fnEplFacud2DBaq5n9R15YPEPFqzufsnUTIprg1NbYbDejTX0Tx+PGinQ+7s7sGBFY1Zxtima1FodFqyDsIo7G1LJfd8uCliwTsSKd276WrOrUwdYsFbVs+YuTuX0h5WVYcFa3t1JPTle8+rN4GHBasZasA/+3gfCgrU/VnHhmloSFCtcq1MHWLCWY/Xl2X0RExas/bHi+XqxA1pcbMOCdSLWygy+GEOLoLBg7Y9VrFWt3Co0VPiGBetErNT2hXh8nOs/wYL1QqxU9FlZRIMF6xlYK0vYW3d3YMG6L4Ofixrxxg8sWEdjpepZ8WkXvzNYsPbHMmDBggULFiwDFixYsGDBMv7GL75uSje2FiMHAAAAAElFTkSuQmCC",
+          "host": [
+            "{{host}}"
+          ],
+          "path": [
+            "qrcode",
+            "getQRCode"
+          ],
+          "query": [
+            {
+              "key": "content",
+              "value": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAIAAAD/gAIDAAABhklEQVR42u3aS5LDIAwFQN//0jOLWU5VKqAnDHaz9Dd0KoqQuH6Mr8eFABYsWLBgwUIACxYsWC/Gumrjw3P+n/rw9m+OFD8hLFj7Y439wkcmOfSuubvq84IFayusoQg1N8nUxXOBEhasp2L1BRRYsGCNxqy5vD+V08OC9Qys4l3fnEplFacud2DBaq5n9R15YPEPFqzufsnUTIprg1NbYbDejTX0Tx+PGinQ+7s7sGBFY1Zxtima1FodFqyDsIo7G1LJfd8uCliwTsSKd276WrOrUwdYsFbVs+YuTuX0h5WVYcFa3t1JPTle8+rN4GHBasZasA/+3gfCgrU/VnHhmloSFCtcq1MHWLCWY/Xl2X0RExas/bHi+XqxA1pcbMOCdSLWygy+GEOLoLBg7Y9VrFWt3Co0VPiGBetErNT2hXh8nOs/wYL1QqxU9FlZRIMF6xlYK0vYW3d3YMG6L4Ofixrxxg8sWEdjpepZ8WkXvzNYsPbHMmDBggULFiwDFixYsGDBMv7GL75uSje2FiMHAAAAAElFTkSuQmCC"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "二维码-生成二维码图片并保存",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"base64str\":\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAIAAAD/gAIDAAABhklEQVR42u3aS5LDIAwFQN//0jOLWU5VKqAnDHaz9Dd0KoqQuH6Mr8eFABYsWLBgwUIACxYsWC/Gumrjw3P+n/rw9m+OFD8hLFj7Y439wkcmOfSuubvq84IFayusoQg1N8nUxXOBEhasp2L1BRRYsGCNxqy5vD+V08OC9Qys4l3fnEplFacud2DBaq5n9R15YPEPFqzufsnUTIprg1NbYbDejTX0Tx+PGinQ+7s7sGBFY1Zxtima1FodFqyDsIo7G1LJfd8uCliwTsSKd276WrOrUwdYsFbVs+YuTuX0h5WVYcFa3t1JPTle8+rN4GHBasZasA/+3gfCgrU/VnHhmloSFCtcq1MHWLCWY/Xl2X0RExas/bHi+XqxA1pcbMOCdSLWygy+GEOLoLBg7Y9VrFWt3Co0VPiGBetErNT2hXh8nOs/wYL1QqxU9FlZRIMF6xlYK0vYW3d3YMG6L4Ofixrxxg8sWEdjpepZ8WkXvzNYsPbHMmDBggULFiwDFixYsGDBMv7GL75uSje2FiMHAAAAAElFTkSuQmCC\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{host}}/qrcode/QRCodeBase64ToPic",
+          "host": [
+            "{{host}}"
+          ],
+          "path": [
+            "qrcode",
+            "QRCodeBase64ToPic"
+          ]
+        },
+        "description": "根据二维码的base64编码生成图片, 并保存到本地"
+      },
+      "response": []
+    },
+    {
+      "name": "邮件-发送文本邮件",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "{{host}}/mail/sendMailMessageTest",
+          "host": [
+            "{{host}}"
+          ],
+          "path": [
+            "mail",
+            "sendMailMessageTest"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Python-测试调用Python程序",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{host}}/python/py_debug",
+          "host": [
+            "{{host}}"
+          ],
+          "path": [
+            "python",
+            "py_debug"
+          ]
+        },
+        "description": "调用python程序, python程序输出一个矩阵"
+      },
+      "response": []
+    },
+    {
+      "name": "Python-将ERP的数据列单独导出",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"file_path\":\"C:\\\\Users\\\\Min\\\\Downloads\",\r\n    \"file_name\":\"订单明细8BA4E60E69028E6AAFE2235B3ADE356A.xlsx\",\r\n    \"choice_colum\":\"A,C,G,Q,R,AI,AJ\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{host}}/python/py_toExcel",
+          "host": [
+            "{{host}}"
+          ],
+          "path": [
+            "python",
+            "py_toExcel"
+          ],
+          "query": [
+            {
+              "key": "FileStr",
+              "value": "订单明细.xlsx",
+              "disabled": true
+            },
+            {
+              "key": "ChoiceColum",
+              "value": "B",
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
