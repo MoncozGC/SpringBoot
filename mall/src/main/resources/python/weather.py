@@ -82,9 +82,9 @@ if __name__ == '__main__':
     today = datetime.today().date()
     create_time = datetime.today().strftime("%H:%M:%S")
     print(create_time)
-    crawling_city = ['101250203?湘乡', '101250101?长沙']
-    # 爬取 长沙的天气
+    crawling_city = ['101250203?湘乡', '101250101?长沙', '101010100?北京', '101020100?上海', '101280601?深圳', '101310101?海南', '101040100?重庆', '101240901?萍乡', '101050101?哈尔滨']
     # url = 'https://tianqi.so.com/weather/'
+    # 遍历城市编码获取数据
     for i in crawling_city:
         url = 'https://tianqi.so.com/weather/' + i
         city_code = i.split('?')[0]
@@ -102,8 +102,8 @@ if __name__ == '__main__':
             city = c.get_text()
 
         # 格式化输出
-        tplt = "{0:^8}\t{1:^8}\t{2:^8}\t{3:^8}\t{4:^8}\t{5:^8}"
-        print(tplt.format('城市', '日期', '天气情况', '温度', '天气质量', '凤向情况'))
+        # tplt = "{0:^8}\t{1:^8}\t{2:^8}\t{3:^8}\t{4:^8}\t{5:^8}"
+        # print(tplt.format('城市', '日期', '天气情况', '温度', '天气质量', '凤向情况'))
         insert_num = 0
         for c in content_list:
             tmp = c.get_text()
@@ -113,7 +113,8 @@ if __name__ == '__main__':
             t2 = tmp.strip().split()[3].split('℃')[0] + '℃'
             t3 = tmp.strip().split()[3].split('℃')[1][0]
             t4 = tmp.strip().split()[3].split('℃')[1][1:] + " " + tmp.strip().split()[4]
-            print(tplt.format(city, t0, t1, t2, t3, t4))
+            # 格式化输出
+            # print(tplt.format(city, t0, t1, t2, t3, t4))
             try:
                 # 插入数据库
                 insert_database(city_code, city, t0, t1, t2, t3, t4, today, create_time)
@@ -122,6 +123,6 @@ if __name__ == '__main__':
                 insert_num = insert_num - 1
 
         if insert_num > 0:
-            print("共插入数据: " + str(insert_num))
+            print(city_name + " 共插入数据: " + str(insert_num))
         else:
-            print("数据未改动, 无需插入...")
+            print(city_name + " 数据未改动, 无需插入...")
