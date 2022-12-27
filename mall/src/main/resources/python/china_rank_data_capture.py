@@ -12,7 +12,7 @@ def getHTMLText(url):
         r = requests.get(url, timeout=40)
         # #如果状态不是200，就会引发HTTPError异常
         r.raise_for_status()
-        r.encoding = r.china_rank_data_capture
+        # r.encoding = r.apparent_encoding
         return r.text
     except:
         return ""
