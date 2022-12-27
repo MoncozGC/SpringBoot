@@ -44,7 +44,7 @@ def insert_database(city_code, city_name, weather_day, weather_situation, temper
     #     `wind_situation`    VARCHAR(40) COMMENT '风向情况',
     #     create_date         VARCHAR(10) COMMENT '爬取日期',
     #     create_time         VARCHAR(10) COMMENT '爬取时间',
-    #     PRIMARY KEY (city_code, weather_day, `create_date`)
+    #     PRIMARY KEY (city_code, weather_day, weather_situation, temperature, `create_date`)
     # ) ENGINE = InnoDB
     #   DEFAULT CHARSET = utf8;
 
@@ -78,6 +78,7 @@ def date_conversion(date):
 
 
 if __name__ == '__main__':
+    # 获取时间
     today = datetime.today().date()
     create_time = datetime.today().strftime("%H:%M:%S")
     print(create_time)
@@ -103,6 +104,7 @@ if __name__ == '__main__':
         # 格式化输出
         tplt = "{0:^8}\t{1:^8}\t{2:^8}\t{3:^8}\t{4:^8}\t{5:^8}"
         print(tplt.format('城市', '日期', '天气情况', '温度', '天气质量', '凤向情况'))
+        insert_num = 0
         for c in content_list:
             tmp = c.get_text()
             split_str = date_conversion(tmp.strip().split()[0])
@@ -112,4 +114,14 @@ if __name__ == '__main__':
             t3 = tmp.strip().split()[3].split('℃')[1][0]
             t4 = tmp.strip().split()[3].split('℃')[1][1:] + " " + tmp.strip().split()[4]
             print(tplt.format(city, t0, t1, t2, t3, t4))
-            insert_database(city_code, city, t0, t1, t2, t3, t4, today, create_time)
+            try:
+                # 插入数据库
+                insert_database(city_code, city, t0, t1, t2, t3, t4, today, create_time)
+                insert_num = insert_num + 1
+            except Exception as e:
+                insert_num = insert_num - 1
+
+        if insert_num > 0:
+            print("共插入数据: " + str(insert_num))
+        else:
+            print("数据未改动, 无需插入...")
