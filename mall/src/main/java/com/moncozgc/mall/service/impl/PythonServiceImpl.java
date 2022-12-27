@@ -31,11 +31,9 @@ public class PythonServiceImpl implements PythonService {
         Process proc;
         int re = 0;
         try {
-
             proc = Runtime.getRuntime().exec(arguments);// 执行py文件
-            //用输入输出流来截取结果
-            BufferedReader in = new BufferedReader(new InputStreamReader(proc.getInputStream()));
-            new InputStreamReader(proc.getInputStream());
+            //用输入输出流来截取结果, 中文编码处理: UTF-8/GBK/GB2312
+            BufferedReader in = new BufferedReader(new InputStreamReader(proc.getInputStream(), "GBK"));
             String line = null;
             while ((line = in.readLine()) != null) {
                 log.info("line: " + line);
@@ -60,7 +58,7 @@ public class PythonServiceImpl implements PythonService {
         int result = -1;
         try {
             proc = Runtime.getRuntime().exec(arg);
-            BufferedReader in = new BufferedReader(new InputStreamReader(proc.getInputStream()));
+            BufferedReader in = new BufferedReader(new InputStreamReader(proc.getInputStream(), "GBK"));
             String line = null;
             while ((line = in.readLine()) != null) {
                 log.info("line: " + line);
@@ -72,5 +70,31 @@ public class PythonServiceImpl implements PythonService {
             e.printStackTrace();
         }
         return result;
+    }
+
+    @Override
+    public int PythonToIntegrate(String script) {
+        String PythonScript = PYTHON_RUN_PATH + script;
+        log.info("PYTHON RUN SCRIPT: " + script);
+        //前面一半是本地环境下的python的启动文件地址，后面一半是要执行的python脚本地址
+        String[] arguments = new String[]{PYTHON_SYS_ENV, PythonScript};
+        Process proc;
+        int re = 0;
+        try {
+            proc = Runtime.getRuntime().exec(arguments);// 执行py文件
+            //用输入输出流来截取结果, 中文编码处理: UTF-8/GBK/GB2312
+            BufferedReader in = new BufferedReader(new InputStreamReader(proc.getInputStream(), "GBK"));
+            String line = null;
+            while ((line = in.readLine()) != null) {
+                log.info("line: " + line);
+            }
+            in.close();
+            //waitFor是用来显示脚本是否运行成功，1表示失败，0表示成功，还有其他的表示其他错误
+            re = proc.waitFor();
+            log.info("执行状态: " + re);
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
+        return re;
     }
 }

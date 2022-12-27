@@ -41,4 +41,16 @@ public class PythonController {
             return CommonResult.failed(i, "EXCEL操作失败");
         }
     }
+
+    @ApiOperation("python-脚本集成接口")
+    @ResponseBody
+    @RequestMapping(value = "/py_integrate", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
+    public CommonResult<Object> PythonToIntegrate(@RequestParam String PythonScript) {
+        int i = pythonService.PythonToIntegrate(PythonScript);
+        if (i == 0) {
+            return CommonResult.success("PYTHON RUN SUCCESS");
+        } else {
+            return CommonResult.failed(i, "PYTHON RUN FAILED");
+        }
+    }
 }

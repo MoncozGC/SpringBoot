@@ -18,4 +18,11 @@ public interface PythonService {
      * @param exportExcelERP 导出实体类
      */
     int PythonToExcelImpl(ExportExcelERP exportExcelERP);
+
+    /**
+     * Python集成脚本
+     *
+     * @param pythonScript 脚本名称
+     */
+    int PythonToIntegrate(String pythonScript);
 }
