@@ -68,15 +68,16 @@ def insert_database(city_code, city_name, week, weather_day, weather_situation, 
 
 def date_conversion(date):
     """
-    时间转换: 今天 -> 周二; 明天 -> 周三
+    时间转换: 今天 -> 星期二; 明天 -> 星期三
     """
-    week_list = ["周一", "周二", "周三", "周四", "周五", "周六", "周日"]
+    week_list = ["星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日"]
     if date == '今天':
         return week_list[datetime.today().isoweekday() - 1]
     elif date == '明天':
         return week_list[datetime.today().isoweekday()]
     else:
-        return date
+        # 将 周 替换成 星期
+        return date.replace('周', '星期').replace('星期日', '星期天')
 
 
 if __name__ == '__main__':
@@ -104,8 +105,8 @@ if __name__ == '__main__':
             city = c.get_text()
 
         # 格式化输出
-        tplt = "{0:^8}\t{1:^8}\t{2:^8}\t{3:^8}\t{4:^8}\t{5:^8}\t{6:^8}"
-        print(tplt.format('城市', 'Week', '日期', '天气情况', '温度', '天气质量', '凤向情况'))
+        # tplt = "{0:^8}\t{1:^8}\t{2:^8}\t{3:^8}\t{4:^8}\t{5:^8}\t{6:^8}"
+        # print(tplt.format('城市', 'Week', '日期', '天气情况', '温度', '天气质量', '凤向情况'))
         insert_num = 0
         for c in content_list:
             tmp = c.get_text()
