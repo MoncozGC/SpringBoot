@@ -26,7 +26,8 @@ def getHTMLText(url):
         return ""
 
 
-def insert_database(city_code, city_name, week, weather_day, weather_situation, temperature, air_quality,
+def insert_database(city_code, city_name, week, weather_day, weather_situation, temperature_min, temperature_max,
+                    air_quality,
                     wind_situation,
                     create_date, create_time):
     conn = pymysql.connect(connect_timeout=5, write_timeout=5, host='localhost', port=3306, user='root',
@@ -41,23 +42,25 @@ def insert_database(city_code, city_name, week, weather_day, weather_situation, 
     #     `week`              VARCHAR(100) NOT NULL COMMENT '所属周',
     #     `weather_day`       VARCHAR(100) NOT NULL COMMENT '天气日期',
     #     `weather_situation` VARCHAR(40)  NOT NULL COMMENT '天气情况',
-    #     `temperature`       VARCHAR(40) COMMENT '天气温度',
+    #     `temperature_min`   VARCHAR(40) COMMENT '最低气温, ℃',
+    #     `temperature_max`   VARCHAR(40) COMMENT '最高气温, ℃',
     #     `air_quality`       VARCHAR(40) COMMENT '空气质量',
     #     `wind_situation`    VARCHAR(40) COMMENT '风向情况',
     #     create_date         VARCHAR(10) COMMENT '爬取日期',
     #     create_time         VARCHAR(10) COMMENT '爬取时间',
-    #     PRIMARY KEY (city_code, weather_day, weather_situation, temperature, `create_date`)
+    #     PRIMARY KEY (city_code, weather_day, weather_situation, temperature_min, temperature_max, `create_date`)
     # ) ENGINE = InnoDB
     #   DEFAULT CHARSET = utf8;
 
     # 使用cursor()方法获取操作游标
     cursor = conn.cursor()
-    info_sql = """INSERT INTO world.weather (`city_code`,`city_name`, `week`,`weather_day`, `weather_situation`, `temperature`, `air_quality`, `wind_situation`, `create_date`, `create_time`) 
-    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+    info_sql = """INSERT INTO world.weather (`city_code`,`city_name`, `week`,`weather_day`, `weather_situation`, `temperature_min`, `temperature_max`, `air_quality`, `wind_situation`, `create_date`, `create_time`) 
+    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
 
     # 执行SQL
     cursor.execute(info_sql,
-                   (city_code, city_name, week, weather_day, weather_situation, temperature, air_quality,
+                   (city_code, city_name, week, weather_day, weather_situation, temperature_min, temperature_max,
+                    air_quality,
                     wind_situation, create_date, create_time))
 
     # 4. 操作成功提交事务
@@ -105,8 +108,8 @@ if __name__ == '__main__':
             city = c.get_text()
 
         # 格式化输出
-        # tplt = "{0:^8}\t{1:^8}\t{2:^8}\t{3:^8}\t{4:^8}\t{5:^8}\t{6:^8}"
-        # print(tplt.format('城市', 'Week', '日期', '天气情况', '温度', '天气质量', '凤向情况'))
+        # tplt = "{0:^8}\t{1:^8}\t{2:^8}\t{3:^8}\t{4:^8}\t{5:^8}\t{6:^8}\t{7:^8}"
+        # print(tplt.format('城市', 'Week', '日期', '天气情况', '最低温度', '最高温度', '天气质量', '凤向情况'))
         insert_num = 0
         for c in content_list:
             tmp = c.get_text()
@@ -114,15 +117,17 @@ if __name__ == '__main__':
             week = split_str
             date_target = tmp.split()[1].strip("()")
             t1 = tmp.strip().split()[2]
-            t2 = tmp.strip().split()[3].split('℃')[0] + '℃'
+            temperature_min = tmp.strip().split()[3].split('℃')[0].split('/')[0] + '℃'
+            temperature_max = tmp.strip().split()[3].split('℃')[0].split('/')[1] + '℃'
             t3 = tmp.strip().split()[3].split('℃')[1][0]
             t4 = tmp.strip().split()[3].split('℃')[1][1:] + " " + tmp.strip().split()[4]
-            # print(tplt.format(city, week, date_target, t1, t2, t3, t4))
+            # print(tplt.format(city, week, date_target, t1, temperature_min, temperature_max, t3, t4))
             try:
-                insert_database(city_code, city, week, date_target, t1, t2, t3, t4, today, create_time)
+                insert_database(city_code, city, week, date_target, t1, temperature_min, temperature_max, t3, t4, today,
+                                create_time)
                 insert_num = insert_num + 1
             except Exception as e:
-                insert_num = insert_num - 1
+                ""
 
         if insert_num > 0:
             print(city_name + " 共插入数据: " + str(insert_num))
