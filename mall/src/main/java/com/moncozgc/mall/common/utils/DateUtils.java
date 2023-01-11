@@ -10,7 +10,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-public class TimeUtils {
+public class DateUtils {
 
     /**
      * 一周间隔时间
@@ -614,6 +614,28 @@ public class TimeUtils {
 
         String[] arr = new String[list.size()];
         return list.toArray(arr);
+    }
+
+    /**
+     * 判断当前时间是否是当月最后一天
+     *
+     * @param date 需判断的时间
+     * @return true: 是最后一天; false: 不是最后一天
+     */
+    public static boolean isLastDayOfMonth(Date date) {
+        // 1. 创建日历类
+        Calendar calendar = Calendar.getInstance();
+        // 2. 设置当前传递的时间
+        calendar.setTime(date);
+        // 3. data的日期是N，那么N+1【假设当月是30天，30+1=31，如果当月只有30天，那么最终结果为1，也就是下月的1号】
+        calendar.set(Calendar.DATE, calendar.get(Calendar.DATE) + 1);
+        // 4. 判断是否是当月最后一天
+        return calendar.get(Calendar.DAY_OF_MONTH) == 1;
+    }
+
+    public static void main(String[] args) throws ParseException {
+        Date date = new SimpleDateFormat("yyyy-MM-dd").parse("2023-01-11");
+        System.out.println(isLastDayOfMonth(date));
     }
 
 }
