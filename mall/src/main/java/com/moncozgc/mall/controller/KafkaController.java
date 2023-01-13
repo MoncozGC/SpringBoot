@@ -1,6 +1,6 @@
 package com.moncozgc.mall.controller;
 
-import com.moncozgc.mall.common.api.CommonResult;
+import com.moncozgc.mall.common.CommonResult;
 import com.moncozgc.mall.component.KafkaProducer;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -36,4 +36,13 @@ public class KafkaController {
         kafkaProducer.send("消息发送: " + format.format(date));
         return CommonResult.success(message, format.format(date));
     }
+
+//    @ApiOperation(value = "Kafka生产者")
+//    @Scheduled(cron = "0 1 * * * * ")
+//    @ResponseBody
+//    public void sendMessageTo() {
+//        Date date = new Date();
+//        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//        kafkaProducer.send("消息发送: " + format.format(date));
+//    }
 }

@@ -1,7 +1,6 @@
 package com.moncozgc.mall.component;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
 /**
@@ -11,8 +10,8 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 public class KafkaConsumer2 {
-    @KafkaListener(topics = "test")
-    public void processMessage(String content) {
-        log.info("consumer processMessage: {}", content);
-    }
+//    @KafkaListener(topics = "test")
+//    public void processMessage(String content) {
+//        log.info("consumer processMessage: {}", content);
+//    }
 }

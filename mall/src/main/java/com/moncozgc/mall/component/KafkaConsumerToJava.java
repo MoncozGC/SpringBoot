@@ -1,6 +1,6 @@
 package com.moncozgc.mall.component;
 
-import com.moncozgc.mall.common.utils.PropertiesUtil;
+import com.moncozgc.mall.utils.PropertiesUtil;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
