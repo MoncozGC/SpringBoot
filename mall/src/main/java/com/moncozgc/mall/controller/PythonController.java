@@ -1,6 +1,6 @@
 package com.moncozgc.mall.controller;
 
-import com.moncozgc.mall.common.api.CommonResult;
+import com.moncozgc.mall.common.CommonResult;
 import com.moncozgc.mall.dto.ExportExcelERP;
 import com.moncozgc.mall.service.PythonService;
 import io.swagger.annotations.Api;

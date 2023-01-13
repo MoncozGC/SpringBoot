@@ -1,4 +1,4 @@
-package com.moncozgc.mall.common.api;
+package com.moncozgc.mall.common;
 
 import com.github.pagehelper.PageInfo;
 

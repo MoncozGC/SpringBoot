@@ -1,4 +1,4 @@
-package com.moncozgc.mall.common.utils;
+package com.moncozgc.mall.utils;
 
 import cn.hutool.core.codec.Base64;
 import cn.hutool.core.util.StrUtil;

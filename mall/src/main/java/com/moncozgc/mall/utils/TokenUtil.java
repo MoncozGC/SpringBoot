@@ -1,4 +1,4 @@
-package com.moncozgc.mall.common.utils;
+package com.moncozgc.mall.utils;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;

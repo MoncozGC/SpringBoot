@@ -1,4 +1,4 @@
-package com.moncozgc.mall.common.utils;
+package com.moncozgc.mall.utils;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -11,9 +11,9 @@ import java.util.Properties;
  * @date 2022/2/16 10:32
  */
 public class PropertiesUtil {
-    public static Properties loadProperties(String... propertiesName) throws Exception{
+    public static Properties loadProperties(String... propertiesName) throws Exception {
         Properties properties = new Properties();
-        for (String name : propertiesName){
+        for (String name : propertiesName) {
             InputStream resourceAsStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(name);
             properties.load(resourceAsStream);
         }

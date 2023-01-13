@@ -1,4 +1,4 @@
-package com.moncozgc.mall.common.utils;
+package com.moncozgc.mall.utils;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;

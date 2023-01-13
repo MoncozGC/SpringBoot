@@ -1,6 +1,6 @@
 package com.moncozgc.mall.service.impl;
 
-import com.moncozgc.mall.common.api.CommonResult;
+import com.moncozgc.mall.common.CommonResult;
 import com.moncozgc.mall.common.utils.MemoryDayUtil;
 import com.moncozgc.mall.config.PushConfigure;
 import com.moncozgc.mall.service.WeChatPushService;

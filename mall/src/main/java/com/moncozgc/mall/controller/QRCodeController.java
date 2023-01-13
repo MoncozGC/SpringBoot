@@ -1,6 +1,6 @@
 package com.moncozgc.mall.controller;
 
-import com.moncozgc.mall.common.api.CommonResult;
+import com.moncozgc.mall.common.CommonResult;
 import com.moncozgc.mall.common.utils.QRCodeUtil;
 import com.moncozgc.mall.dto.Base64Dto;
 import com.moncozgc.mall.service.impl.TaskServiceImpl;

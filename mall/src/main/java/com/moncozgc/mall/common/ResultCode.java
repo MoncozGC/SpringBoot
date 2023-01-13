@@ -1,4 +1,4 @@
-package com.moncozgc.mall.common.api;
+package com.moncozgc.mall.common;
 
 /**
  * 枚举了一些常用API操作码

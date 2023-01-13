@@ -1,6 +1,6 @@
 package com.moncozgc.mall.controller;
 
-import com.moncozgc.mall.common.api.CommonResult;
+import com.moncozgc.mall.common.CommonResult;
 import com.moncozgc.mall.service.WeChatPushService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

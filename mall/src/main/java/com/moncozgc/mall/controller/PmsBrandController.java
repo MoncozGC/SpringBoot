@@ -1,7 +1,7 @@
 package com.moncozgc.mall.controller;
 
-import com.moncozgc.mall.common.api.CommonPage;
-import com.moncozgc.mall.common.api.CommonResult;
+import com.moncozgc.mall.common.CommonPage;
+import com.moncozgc.mall.common.CommonResult;
 import com.moncozgc.mall.mbg.model.PmsBrand;
 import com.moncozgc.mall.service.PmsBrandService;
 import io.swagger.annotations.Api;

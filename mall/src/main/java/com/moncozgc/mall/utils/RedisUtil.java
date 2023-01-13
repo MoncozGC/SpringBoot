@@ -1,4 +1,4 @@
-package com.moncozgc.mall.common.utils;
+package com.moncozgc.mall.utils;
 
 import lombok.SneakyThrows;
 import redis.clients.jedis.Jedis;

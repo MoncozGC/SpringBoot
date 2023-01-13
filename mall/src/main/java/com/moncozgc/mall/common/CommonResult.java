@@ -1,4 +1,4 @@
-package com.moncozgc.mall.common.api;
+package com.moncozgc.mall.common;
 
 /**
  * 通用返回对象
@@ -24,14 +24,14 @@ public class CommonResult<T> {
      * @param data 获取的数据
      */
     public static <T> CommonResult<T> success(T data) {
-         return new CommonResult<T>(ResultCode.SUCCESS.getCode(), ResultCode.SUCCESS.getMessage(), data);
+        return new CommonResult<T>(ResultCode.SUCCESS.getCode(), ResultCode.SUCCESS.getMessage(), data);
     }
 
     /**
      * 成功返回结果
      *
-     * @param data 获取的数据
-     * @param  message 提示信息
+     * @param data    获取的数据
+     * @param message 提示信息
      */
     public static <T> CommonResult<T> success(T data, String message) {
         return new CommonResult<T>(ResultCode.SUCCESS.getCode(), message, data);
@@ -39,6 +39,7 @@ public class CommonResult<T> {
 
     /**
      * 失败返回结果
+     *
      * @param errorCode 错误码
      */
     public static <T> CommonResult<T> failed(IErrorCode errorCode) {
@@ -80,6 +81,7 @@ public class CommonResult<T> {
 
     /**
      * 参数验证失败返回结果
+     *
      * @param message 提示信息
      */
     public static <T> CommonResult<T> validateFailed(String message) {

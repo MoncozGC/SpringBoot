@@ -1,4 +1,4 @@
-package com.moncozgc.mall.common.api;
+package com.moncozgc.mall.common;
 
 /**
  * 封装API的错误码

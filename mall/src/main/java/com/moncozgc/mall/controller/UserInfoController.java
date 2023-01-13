@@ -5,7 +5,7 @@ import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.StrUtil;
 import com.moncozgc.mall.annotation.TokenCheck;
 import com.moncozgc.mall.annotation.TokenPass;
-import com.moncozgc.mall.common.api.CommonResult;
+import com.moncozgc.mall.common.CommonResult;
 import com.moncozgc.mall.dto.User;
 import com.moncozgc.mall.service.TokenService;
 import com.moncozgc.mall.service.UserInfoService;

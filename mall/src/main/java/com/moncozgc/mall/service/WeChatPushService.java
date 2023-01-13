@@ -1,6 +1,6 @@
 package com.moncozgc.mall.service;
 
-import com.moncozgc.mall.common.api.CommonResult;
+import com.moncozgc.mall.common.CommonResult;
 
 /**
  * Created by pengqi on 2023/1/10

@@ -1,6 +1,6 @@
 package com.moncozgc.mall.service.impl;
 
-import com.moncozgc.mall.common.api.CommonResult;
+import com.moncozgc.mall.common.CommonResult;
 import com.moncozgc.mall.common.utils.StringUtils;
 import com.moncozgc.mall.controller.UmsMemberController;
 import com.moncozgc.mall.service.MailMessageService;

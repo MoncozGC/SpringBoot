@@ -1,4 +1,4 @@
-package com.moncozgc.mall.common.utils;
+package com.moncozgc.mall.utils;
 
 import com.alibaba.druid.util.StringUtils;
 import org.slf4j.Logger;
