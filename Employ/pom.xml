@@ -37,6 +37,16 @@
             <artifactId>easypoi-annotation</artifactId>
             <version>4.4.0</version>
         </dependency>
+        <!-- 生成假数据工具 -->
+        <dependency>
+            <groupId>io.gitee.ForteScarlet</groupId>
+            <artifactId>mock.java</artifactId>
+            <version>1.9.3</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
