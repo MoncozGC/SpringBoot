@@ -1,9 +1,9 @@
 package com.moncozgc.mall.service.impl;
 
 import com.moncozgc.mall.common.CommonResult;
-import com.moncozgc.mall.common.utils.MemoryDayUtil;
 import com.moncozgc.mall.config.PushConfigure;
 import com.moncozgc.mall.service.WeChatPushService;
+import com.moncozgc.mall.utils.MemoryDayUtil;
 import lombok.extern.slf4j.Slf4j;
 import me.chanjar.weixin.mp.api.WxMpInMemoryConfigStorage;
 import me.chanjar.weixin.mp.api.WxMpService;
@@ -13,7 +13,7 @@ import me.chanjar.weixin.mp.bean.template.WxMpTemplateMessage;
 import org.springframework.stereotype.Service;
 
 /**
- * Created by pengqi on 2023/1/10
+ * Created by MoncozGC on 2023/1/10
  */
 @Service
 @Slf4j

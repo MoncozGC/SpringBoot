@@ -3,7 +3,7 @@ package com.moncozgc.mall.service;
 import com.moncozgc.mall.common.CommonResult;
 
 /**
- * Created by pengqi on 2023/1/10
+ * Created by MoncozGC on 2023/1/10
  */
 public interface WeChatPushService {
 

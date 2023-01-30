@@ -1,11 +1,11 @@
 package com.moncozgc.mall.service.impl;
 
 import com.moncozgc.mall.common.CommonResult;
-import com.moncozgc.mall.common.utils.StringUtils;
 import com.moncozgc.mall.controller.UmsMemberController;
 import com.moncozgc.mall.service.MailMessageService;
 import com.moncozgc.mall.service.RedisService;
 import com.moncozgc.mall.service.UmsMemberService;
+import com.moncozgc.mall.utils.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

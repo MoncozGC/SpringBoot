@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * Created by pengqi on 2023/1/10
+ * Created by MoncozGC on 2023/1/10
  */
 @RestController("wx")
 public class WeChatController {

@@ -1,9 +1,9 @@
 package com.moncozgc.mall.controller;
 
 import com.moncozgc.mall.common.CommonResult;
-import com.moncozgc.mall.common.utils.QRCodeUtil;
 import com.moncozgc.mall.dto.Base64Dto;
 import com.moncozgc.mall.service.impl.TaskServiceImpl;
+import com.moncozgc.mall.utils.QRCodeUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;

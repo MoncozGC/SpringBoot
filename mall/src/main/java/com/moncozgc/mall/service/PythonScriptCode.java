@@ -1,7 +1,7 @@
 package com.moncozgc.mall.service;
 
 /**
- * Created by pengqi on 2022/12/27
+ * Created by MoncozGC on 2022/12/27
  */
 public enum PythonScriptCode {
     PYTHON_TEST("PY_0001", "spring_debug.py", "通道测试"),
