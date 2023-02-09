@@ -43,6 +43,8 @@ public class MailMessageServiceImpl implements MailMessageService {
 
     // 发送者邮箱
     private final String SENDER_EMAIL = "2869488716@qq.com";
+    // 接收者邮箱
+    private final String RECEIVE_EMAIL = "183966516@qq.com,2869488716@qq.com";
 
     @Autowired
     private JavaMailSender javaMailSender;
@@ -60,7 +62,7 @@ public class MailMessageServiceImpl implements MailMessageService {
             // 回复发送至邮箱地址
 //            message.setReplyTo(SENDER_EMAIL);
             // 邮件接受的邮箱地址, 【可以设置多个, 多个时采取数组】
-            String[] mail = {"183966516@qq.com"};
+            String[] mail = RECEIVE_EMAIL.split(",");
             mimeMessageHelper.setTo(mail);
             // 抄送的邮箱地址 【可以设置多个, 多个时采取数组】
             mimeMessageHelper.setCc(SENDER_EMAIL);
@@ -92,7 +94,7 @@ public class MailMessageServiceImpl implements MailMessageService {
             // 抄送的邮箱地址 【可以设置多个, 多个时采取数组】
             mimeMessageHelper.setCc(SENDER_EMAIL);
             // 邮件接受的邮箱地址, 【可以设置多个, 多个时采取数组】
-            String[] mail = {"183966516@qq.com"};
+            String[] mail = RECEIVE_EMAIL.split(",");
             mimeMessageHelper.setTo(mail);
             mimeMessageHelper.setSubject("邮件主题");
             mimeMessageHelper.setSentDate(new Date());
@@ -131,7 +133,7 @@ public class MailMessageServiceImpl implements MailMessageService {
             // 抄送的邮箱地址 【可以设置多个, 多个时采取数组】
             mimeMessageHelper.setCc(SENDER_EMAIL);
             // 邮件接受的邮箱地址
-            mimeMessageHelper.setTo("183966516@qq.com");
+            mimeMessageHelper.setTo(RECEIVE_EMAIL.split(","));
             mimeMessageHelper.setSubject("邮件主题");
             mimeMessageHelper.setSentDate(new Date());
 
