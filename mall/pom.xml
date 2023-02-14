@@ -183,6 +183,12 @@
             <artifactId>weixin-java-mp</artifactId>
             <version>3.3.0</version>
         </dependency>
+        <!--elasticsearch依赖配置-->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-elasticsearch</artifactId>
+            <version>4.3.1</version>
+        </dependency>
     </dependencies>
 
     <build>
