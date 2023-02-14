@@ -5,7 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 
-@ApiModel
+@ApiModel("base64转换图片模型")
 @Data
 public class Base64Dto {
     @ApiModelProperty(value = "base64str")

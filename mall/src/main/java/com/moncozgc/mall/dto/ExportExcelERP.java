@@ -8,7 +8,7 @@ import lombok.Data;
  * Created by MoncozGC on 2022/12/13
  */
 @Data
-@ApiModel
+@ApiModel("ERP导出模型")
 public class ExportExcelERP {
     @ApiModelProperty(value = "指定的文件路径")
     private String file_path;
