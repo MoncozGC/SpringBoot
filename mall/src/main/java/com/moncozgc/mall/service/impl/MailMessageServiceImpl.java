@@ -43,8 +43,8 @@ public class MailMessageServiceImpl implements MailMessageService {
 
     // 发送者邮箱
     private final String SENDER_EMAIL = "2869488716@qq.com";
-    // 接收者邮箱
-    private final String RECEIVE_EMAIL = "183966516@qq.com,2869488716@qq.com";
+    // 接收者邮箱, 多个根据逗号分隔 "a,b"
+    private final String RECEIVE_EMAIL = "183966516@qq.com";
 
     @Autowired
     private JavaMailSender javaMailSender;

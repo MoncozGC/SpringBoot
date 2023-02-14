@@ -19,7 +19,7 @@ public class PythonServiceImpl implements PythonService {
 
     @Value("${python.parser.path}")
     private String PYTHON_SYS_ENV;
-    private final String PYTHON_RUN_PATH = System.getProperty("user.dir") + "\\mall\\src\\main\\resources\\python\\";
+    private final String PYTHON_RUN_PATH = System.getProperty("user.dir") + "\\python\\";
     // 读取resources路径文件, 但是无法执行
 //    private final String PYTHON_RUN_PATH = (ClassLoader.getSystemResource("python").getPath() + "/").replaceAll("%20", " ");
 

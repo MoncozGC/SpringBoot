@@ -35,8 +35,8 @@ build/
 
 ### application ###
 task.properties
-application-YKYY.yml
-application-HOME.yml
+application-*.yml
+test/
 
 ### log ###
 logs/
