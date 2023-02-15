@@ -62,7 +62,7 @@ def insert_database(ncov_date, ncov_title, ncov_info, ncov_link, create_date, cr
     """
     conn = pymysql.connect(connect_timeout=5, write_timeout=5, host='localhost', port=3306, user='root',
                            password='hadoop',
-                           database='world', charset="utf8")
+                           database='dev', charset="utf8")
     # 建库语句: CREATE DATABASE world;
     # 建表语句
     # CREATE TABLE IF NOT EXISTS `ncov_2019`
@@ -80,7 +80,7 @@ def insert_database(ncov_date, ncov_title, ncov_info, ncov_link, create_date, cr
 
     # 使用cursor()方法获取操作游标
     cursor = conn.cursor()
-    info_sql = """INSERT INTO world.ncov_2019 (`ncov_date`, `ncov_title`, `ncov_info`, `ncov_link`,`create_date`, `create_time`) 
+    info_sql = """INSERT INTO dev.ncov_2019 (`ncov_date`, `ncov_title`, `ncov_info`, `ncov_link`,`create_date`, `create_time`)
     VALUES (%s, %s, %s, %s, %s, %s)"""
 
     # 执行SQL
