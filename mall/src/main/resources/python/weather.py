@@ -4,6 +4,7 @@
 # Desc  : 天气数据爬取, 并且入库
 # 导入相关的包
 from datetime import datetime
+from pin_yin import chinese_conversion
 
 import pymysql
 import requests
@@ -88,7 +89,8 @@ if __name__ == '__main__':
     today = datetime.today().date()
     create_time = datetime.today().strftime("%H:%M:%S")
     print(create_time)
-    crawling_city = ['101250203?湘乡', '101250101?长沙', '101010100?北京', '101020100?上海', '101280601?深圳', '101310101?海南', '101040100?重庆', '101240901?萍乡', '101050101?哈尔滨']
+    crawling_city = ['101250203?湘乡']
+    # crawling_city = ['101250203?湘乡', '101250101?长沙', '101010100?北京', '101020100?上海', '101280601?深圳', '101310101?海南', '101040100?重庆', '101240901?萍乡', '101050101?哈尔滨']
     # url = 'https://tianqi.so.com/weather/'
     # 遍历城市编码获取数据
     for i in crawling_city:
@@ -130,6 +132,7 @@ if __name__ == '__main__':
                 ""
 
         if insert_num > 0:
-            print(city_name + " 共插入数据: " + str(insert_num))
+            # ljust右侧填充对齐字符串
+            print(chinese_conversion(city_name).ljust(12) + "共插入数据: " + str(insert_num))
         else:
-            print(city_name + " 数据未改动, 无需插入...")
+            print(chinese_conversion(city_name).ljust(12) + "数据未改动, 无需插入...")

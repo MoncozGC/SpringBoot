@@ -24,7 +24,7 @@ public class TaskServiceImpl implements TaskService {
     @Autowired
     private PythonService pythonService;
 
-    @Scheduled(cron = "0 1 * * * * ")
+    @Scheduled(cron = "0 0 18 * * * ")
     @Override
     public void reportCurrentByCron() {
         pythonService.PythonToIntegrate("weather.py");

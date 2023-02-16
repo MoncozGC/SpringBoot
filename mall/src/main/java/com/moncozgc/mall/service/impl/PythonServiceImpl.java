@@ -75,6 +75,7 @@ public class PythonServiceImpl implements PythonService {
     @Override
     public int PythonToIntegrate(String script) {
         String PythonScript = PYTHON_RUN_PATH + script;
+        log.info("PYTHON解释器路径: " + PYTHON_SYS_ENV + ", PYTHON脚本路径: " + PythonScript);
         log.info("PYTHON RUN SCRIPT: " + script);
         //前面一半是本地环境下的python的启动文件地址，后面一半是要执行的python脚本地址
         String[] arguments = new String[]{PYTHON_SYS_ENV, PythonScript};

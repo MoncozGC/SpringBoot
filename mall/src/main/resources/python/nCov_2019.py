@@ -149,7 +149,7 @@ def reptile_handle(content_list, insert_num, is_first):
             # 根据链接地址获取时间
             href_date = href_info.split('jszl_11809/')[1].split('/t')[0][0:4] + '年' + href_info.split('截至')[1].split('24时')[0]
             trans_date = time_cn_trans(href_date)
-            print(trans_date + " - " + href_info)
+#             print(trans_date + " - " + href_info)
             # 根据具体链接数据获取文本信息
             detailed_info = get_detailed_info(href_url)
             for detailed_date in detailed_info:
@@ -203,7 +203,7 @@ if __name__ == '__main__':
         else:
             url = url + "index_" + str(i) + ".html"
             flag = True
-        print("获取疫情动态首页地址: " + url)
+        print("Get HOME URL: " + url)
         html = getHTMLText(url)
         soup = BeautifulSoup(html, 'html.parser')
 
