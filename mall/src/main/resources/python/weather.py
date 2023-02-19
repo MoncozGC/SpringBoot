@@ -110,7 +110,7 @@ if __name__ == '__main__':
             city = c.get_text()
 
         # 格式化输出
-        # tplt = "{0:^8}\t{1:^8}\t{2:^8}\t{3:^8}\t{4:^8}\t{5:^8}\t{6:^8}\t{7:^8}"
+        # tplt = "{0:^8}\t{1:^8}\t{2:^8}\t{3:^8}\t{4:^8}\t{5:^8}\t{6:^8}\t{7:^8}"information_schema
         # print(tplt.format('城市', 'Week', '日期', '天气情况', '最低温度', '最高温度', '天气质量', '凤向情况'))
         insert_num = 0
         for c in content_list:
