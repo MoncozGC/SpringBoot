@@ -20,6 +20,9 @@ import java.time.Duration;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * ES连接服务器
+ */
 @Configuration
 @Data
 @ConfigurationProperties(prefix = "elasticsearch")
