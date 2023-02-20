@@ -45,8 +45,8 @@ public class PythonController {
     @ApiOperation("python-脚本集成接口")
     @ResponseBody
     @RequestMapping(value = "/py_integrate", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
-    public CommonResult<Object> PythonToIntegrate(@RequestParam String PythonScript) {
-        int i = pythonService.PythonToIntegrate(PythonScript);
+    public CommonResult<Object> PythonToIntegrate(@RequestParam(defaultValue = "server") String type, String PythonScript) {
+        int i = pythonService.PythonToIntegrate(type, PythonScript);
         if (i == 0) {
             return CommonResult.success("PYTHON RUN SUCCESS");
         } else {

@@ -19,7 +19,8 @@ public class PythonServiceImpl implements PythonService {
 
     @Value("${python.parser.path}")
     private String PYTHON_SYS_ENV;
-    private final String PYTHON_RUN_PATH = System.getProperty("user.dir") + "\\python\\";
+    private static String PYTHON_RUN_PATH = System.getProperty("user.dir") + "/python/";
+//    private static String PYTHON_RUN_PATH = System.getProperty("user.dir") + "/mall/src/main/resources/python/";
     // 读取resources路径文件, 但是无法执行
 //    private final String PYTHON_RUN_PATH = (ClassLoader.getSystemResource("python").getPath() + "/").replaceAll("%20", " ");
 
@@ -73,9 +74,10 @@ public class PythonServiceImpl implements PythonService {
     }
 
     @Override
-    public int PythonToIntegrate(String script) {
+    public int PythonToIntegrate(String type, String script) {
+        PYTHON_RUN_PATH = PathJudgment(type);
         String PythonScript = PYTHON_RUN_PATH + script;
-        log.info("PYTHON解释器路径: " + PYTHON_SYS_ENV + ", PYTHON脚本路径: " + PythonScript);
+        log.info("PYTHON 执行环境:" + type + " PYTHON解释器路径: " + PYTHON_SYS_ENV + ", PYTHON脚本路径: " + PythonScript);
         log.info("PYTHON RUN SCRIPT: " + script);
         //前面一半是本地环境下的python的启动文件地址，后面一半是要执行的python脚本地址
         String[] arguments = new String[]{PYTHON_SYS_ENV, PythonScript};
@@ -97,5 +99,15 @@ public class PythonServiceImpl implements PythonService {
             e.printStackTrace();
         }
         return re;
+    }
+
+    public static String PathJudgment(String type) {
+        if (type.equals("local")) {
+            return PYTHON_RUN_PATH = System.getProperty("user.dir") + "/mall/src/main/resources/python/";
+        } else if (type.equals("server")) {
+            return PYTHON_RUN_PATH = System.getProperty("user.dir") + "/python/";
+        } else {
+            return PYTHON_RUN_PATH;
+        }
     }
 }

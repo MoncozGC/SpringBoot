@@ -22,7 +22,8 @@ public interface PythonService {
     /**
      * Python集成脚本
      *
+     * @param type         执行环境, local-本地, server-远程服务器(默认)
      * @param pythonScript 脚本名称
      */
-    int PythonToIntegrate(String pythonScript);
+    int PythonToIntegrate(String type, String pythonScript);
 }
