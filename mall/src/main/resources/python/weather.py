@@ -27,9 +27,7 @@ def getHTMLText(url):
         return ""
 
 
-def insert_database(city_code, city_name, week, weather_day, weather_situation, temperature_min, temperature_max,
-                    air_quality,
-                    wind_situation,
+def insert_database(city_code, city_name, week, weather_day, weather_situation, temperature_min, temperature_max, air_quality, wind_situation, sunrise, sunset,
                     create_date, create_time):
     conn = pymysql.connect(connect_timeout=5, write_timeout=5, host='localhost', port=3306, user='root',
                            password='hadoop',
@@ -38,31 +36,32 @@ def insert_database(city_code, city_name, week, weather_day, weather_situation, 
     # 建表语句
     # CREATE TABLE IF NOT EXISTS `weather`
     # (
-    #     `city_code`         INT COMMENT '城市编码',
-    #     `city_name`         VARCHAR(40) COMMENT '天气城市',
-    #     `week`              VARCHAR(100) NOT NULL COMMENT '所属周',
+    #     `id`                INT UNSIGNED AUTO_INCREMENT COMMENT 'id',
+    #     `city_name`         INT COMMENT '天气城市',
     #     `weather_day`       VARCHAR(100) NOT NULL COMMENT '天气日期',
     #     `weather_situation` VARCHAR(40)  NOT NULL COMMENT '天气情况',
-    #     `temperature_min`   VARCHAR(40) COMMENT '最低气温, ℃',
-    #     `temperature_max`   VARCHAR(40) COMMENT '最高气温, ℃',
+    #     `temperature`       VARCHAR(40) COMMENT '天气温度',
     #     `air_quality`       VARCHAR(40) COMMENT '空气质量',
     #     `wind_situation`    VARCHAR(40) COMMENT '风向情况',
-    #     create_date         VARCHAR(10) COMMENT '爬取日期',
-    #     create_time         VARCHAR(10) COMMENT '爬取时间',
-    #     PRIMARY KEY (city_code, weather_day, weather_situation, temperature_min, temperature_max, `create_date`)
+    #      sunrise            VARCHAR(30)  NULL COMMENT '日出时间',
+    #      sunset             VARCHAR(30)  NULL COMMENT '日落时间',
+    #     create_time         datetime DEFAULT CURRENT_TIMESTAMP COMMENT '爬取时间',
+    #     PRIMARY KEY (`id`)
     # ) ENGINE = InnoDB
     #   DEFAULT CHARSET = utf8;
 
     # 使用cursor()方法获取操作游标
     cursor = conn.cursor()
-    info_sql = """INSERT INTO dev.weather (`city_code`,`city_name`, `week`,`weather_day`, `weather_situation`, `temperature_min`, `temperature_max`, `air_quality`, `wind_situation`, `create_date`, `create_time`)
-    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+
+    info_sql = """INSERT INTO dev.weather (`city_code`,`city_name`, `week`,`weather_day`, `weather_situation`, `temperature_min`, `temperature_max`, `air_quality`, `wind_situation`,
+    `sunrise`, `sunset` ,`create_date`, `create_time`)
+    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
 
     # 执行SQL
     cursor.execute(info_sql,
                    (city_code, city_name, week, weather_day, weather_situation, temperature_min, temperature_max,
-                    air_quality,
-                    wind_situation, create_date, create_time))
+                    air_quality, wind_situation, sunrise, sunset,
+                    create_date, create_time))
 
     # 4. 操作成功提交事务
     conn.commit()
@@ -84,13 +83,23 @@ def date_conversion(date):
         return date.replace('周', '星期').replace('星期日', '星期天')
 
 
+def sunrise_info(sun_info):
+    """
+    获取日出日落信息
+    :param values:
+    :return:
+    """
+    values = sun_info[sun_info.index('日出'):]
+    return values[:8].strip("日出："), values[8:].strip("日落：")
+
+
 if __name__ == '__main__':
     # 获取时间
     today = datetime.today().date()
     create_time = datetime.today().strftime("%H:%M:%S")
     print(create_time)
-    crawling_city = ['101250203?湘乡']
-    # crawling_city = ['101250203?湘乡', '101250101?长沙', '101010100?北京', '101020100?上海', '101280601?深圳', '101310101?海南', '101040100?重庆', '101240901?萍乡', '101050101?哈尔滨']
+#     crawling_city = ['101250203?湘乡']
+    crawling_city = ['101250203?湘乡', '101250101?长沙', '101010100?北京', '101020100?上海', '101280601?深圳', '101310101?海南', '101040100?重庆', '101240901?萍乡', '101050101?哈尔滨']
     # url = 'https://tianqi.so.com/weather/'
     # 遍历城市编码获取数据
     for i in crawling_city:
@@ -105,6 +114,15 @@ if __name__ == '__main__':
         # 提取目标值
         content_list = soup.find_all('ul', class_='weather-columns')
         city_list = soup.find_all('strong', class_='change-title')
+        city_info = soup.find_all('div', class_='cur-weather g-fl')
+
+        # 获取当天的日出日落信息
+        sunrise = ""
+        sunset = ""
+        for value in city_info:
+            sunrise, sunset = sunrise_info(value.get_text())
+            break
+
         city = ''
         for c in city_list:
             city = c.get_text()
@@ -118,21 +136,21 @@ if __name__ == '__main__':
             split_str = date_conversion(tmp.strip().split()[0])
             week = split_str
             date_target = tmp.split()[1].strip("()")
-            t1 = tmp.strip().split()[2]
+            situation = tmp.strip().split()[2]
             temperature_min = tmp.strip().split()[3].split('℃')[0].split('/')[0] + '℃'
             temperature_max = tmp.strip().split()[3].split('℃')[0].split('/')[1] + '℃'
-            t3 = tmp.strip().split()[3].split('℃')[1][0]
-            t4 = tmp.strip().split()[3].split('℃')[1][1:] + " " + tmp.strip().split()[4]
-            # print(tplt.format(city, week, date_target, t1, temperature_min, temperature_max, t3, t4))
+            air_quality = tmp.strip().split()[3].split('℃')[1][0]
+            wind_situation = tmp.strip().split()[3].split('℃')[1][1:] + " " + tmp.strip().split()[4]
+            # print(tplt.format(city, week, date_target, situation, temperature_min, temperature_max, air_quality, wind_situation))
             try:
-                insert_database(city_code, city, week, date_target, t1, temperature_min, temperature_max, t3, t4, today,
-                                create_time)
+                insert_database(city_code, city, week, date_target, situation, temperature_min, temperature_max, air_quality, wind_situation, sunrise, sunset,
+                                today, create_time)
                 insert_num = insert_num + 1
             except Exception as e:
                 ""
 
         if insert_num > 0:
             # ljust右侧填充对齐字符串
-            print(chinese_conversion(city_name).ljust(12) + "共插入数据: " + str(insert_num))
+            print(chinese_conversion(city_name).ljust(12) + "insert database num: " + str(insert_num))
         else:
-            print(chinese_conversion(city_name).ljust(12) + "数据未改动, 无需插入...")
+            print(chinese_conversion(city_name).ljust(12) + "No Change...")
