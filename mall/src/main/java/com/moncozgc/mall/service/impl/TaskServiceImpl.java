@@ -27,7 +27,7 @@ public class TaskServiceImpl implements TaskService {
     @Scheduled(cron = "0 0 18 * * * ")
     @Override
     public void reportCurrentByCron() {
-        pythonService.PythonToIntegrate("local", "weather.py");
+        pythonService.PythonToIntegrate("SERVER", "weather.py");
         LOGGER.info("定时器每分钟执行一次: " + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
     }
 }

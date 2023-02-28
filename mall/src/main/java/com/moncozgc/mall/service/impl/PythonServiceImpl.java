@@ -77,7 +77,7 @@ public class PythonServiceImpl implements PythonService {
     public int PythonToIntegrate(String type, String script) {
         PYTHON_RUN_PATH = PathJudgment(type);
         String PythonScript = PYTHON_RUN_PATH + script;
-        log.info("PYTHON 执行环境:" + type + " PYTHON解释器路径: " + PYTHON_SYS_ENV + ", PYTHON脚本路径: " + PythonScript);
+        log.info("PYTHON 执行环境: " + type + " PYTHON解释器路径: " + PYTHON_SYS_ENV + ", PYTHON脚本路径: " + PythonScript);
         log.info("PYTHON RUN SCRIPT: " + script);
         //前面一半是本地环境下的python的启动文件地址，后面一半是要执行的python脚本地址
         String[] arguments = new String[]{PYTHON_SYS_ENV, PythonScript};
@@ -102,9 +102,9 @@ public class PythonServiceImpl implements PythonService {
     }
 
     public static String PathJudgment(String type) {
-        if (type.equals("local")) {
+        if (type.equals("LOCAL")) {
             return PYTHON_RUN_PATH = System.getProperty("user.dir") + "/mall/src/main/resources/python/";
-        } else if (type.equals("server")) {
+        } else if (type.equals("SERVER")) {
             return PYTHON_RUN_PATH = System.getProperty("user.dir") + "/python/";
         } else {
             return PYTHON_RUN_PATH;
