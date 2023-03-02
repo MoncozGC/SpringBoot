@@ -162,9 +162,9 @@ public class StringUtils {
      */
     public static String PathJudgment(String type, String pathSuffix) {
         String path = "";
-        if ("LOCAL".equals(type)) {
+        if ("LOCAL".equalsIgnoreCase(type)) {
             return path = System.getProperty("user.dir") + "/mall/src/main/resources/" + pathSuffix + "/";
-        } else if ("SERVER".equals(type)) {
+        } else if ("SERVER".equalsIgnoreCase(type)) {
             return path = System.getProperty("user.dir") + "/" + pathSuffix + "/";
         } else {
             return path;
