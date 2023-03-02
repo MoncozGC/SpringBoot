@@ -153,25 +153,4 @@ public class StringUtils {
         return str == null || (str.trim().length() <= maxLen);
     }
 
-//    public static List<String> convBitStatuToStr(long bitNum, String[] statusStrArr) {
-//        if (ArrayUtil.isEmpty(statusStrArr) || bitNum <= 0) {
-//            return Collections.emptyList();
-//        }
-//
-//        int index = 0;
-//        long compareNum = 1;
-//        List<String> results = new ArrayList<>(statusStrArr.length);
-//
-//        while(bitNum >= compareNum && index < statusStrArr.length) {
-//            if ((bitNum & compareNum) > 0) {
-//                results.add(statusStrArr[index]);
-//            }
-//
-//            index++;
-//            compareNum <<= 1;
-//        }
-//
-//        return results;
-//    }
-
 }
