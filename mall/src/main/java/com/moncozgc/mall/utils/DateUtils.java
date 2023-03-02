@@ -50,6 +50,13 @@ public class DateUtils {
     }
 
     /**
+     * 获取当前时间戳
+     */
+    public static String timeStamp() {
+        return String.valueOf(new Date().getTime());
+    }
+
+    /**
      * 减少x天
      */
     public static Date subtractDay(Date date, int num) {
