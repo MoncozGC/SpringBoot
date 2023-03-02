@@ -102,9 +102,9 @@ public class PythonServiceImpl implements PythonService {
     }
 
     public static String PathJudgment(String type) {
-        if (type.equals("LOCAL")) {
+        if ("LOCAL".equals(type)) {
             return PYTHON_RUN_PATH = System.getProperty("user.dir") + "/mall/src/main/resources/python/";
-        } else if (type.equals("SERVER")) {
+        } else if ("SERVER".equals(type)) {
             return PYTHON_RUN_PATH = System.getProperty("user.dir") + "/python/";
         } else {
             return PYTHON_RUN_PATH;
