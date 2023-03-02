@@ -53,6 +53,8 @@ def insert_database(city_code, city_name, week, weather_day, weather_situation, 
     # 使用cursor()方法获取操作游标
     cursor = conn.cursor()
 
+    # 因为只能获取到当天的日出日落时间, 所以当写入日期为当天才将数据入库
+    # if (datetime.today().strftime("%m-%d") == weather_day):
     info_sql = """INSERT INTO dev.weather (`city_code`,`city_name`, `week`,`weather_day`, `weather_situation`, `temperature_min`, `temperature_max`, `air_quality`, `wind_situation`,
     `sunrise`, `sunset` ,`create_date`, `create_time`)
     VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""

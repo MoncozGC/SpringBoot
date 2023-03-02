@@ -5,6 +5,7 @@ import com.moncozgc.mall.service.TaskService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -23,11 +24,13 @@ public class TaskServiceImpl implements TaskService {
 
     @Autowired
     private PythonService pythonService;
+    @Value("${python.parser.type}")
+    private String type;
 
     @Scheduled(cron = "0 0 18 * * * ")
     @Override
     public void reportCurrentByCron() {
-        pythonService.PythonToIntegrate("SERVER", "weather.py");
+        pythonService.PythonToIntegrate(type, "weather.py");
         LOGGER.info("定时器每分钟执行一次: " + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
     }
 }
