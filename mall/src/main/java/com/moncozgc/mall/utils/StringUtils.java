@@ -153,4 +153,22 @@ public class StringUtils {
         return str == null || (str.trim().length() <= maxLen);
     }
 
+    /**
+     * 根据访问环境不同获取 脚本/资源 路径
+     *
+     * @param type       执行环境
+     * @param pathSuffix 最后的目录名称
+     * @return 整体的路径
+     */
+    public static String PathJudgment(String type, String pathSuffix) {
+        String path = "";
+        if ("LOCAL".equals(type)) {
+            return path = System.getProperty("user.dir") + "/mall/src/main/resources/" + pathSuffix + "/";
+        } else if ("SERVER".equals(type)) {
+            return path = System.getProperty("user.dir") + "/" + pathSuffix + "/";
+        } else {
+            return path;
+        }
+    }
+
 }

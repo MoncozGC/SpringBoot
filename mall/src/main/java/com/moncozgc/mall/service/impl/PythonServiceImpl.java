@@ -10,6 +10,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import static com.moncozgc.mall.utils.StringUtils.PathJudgment;
+
 /**
  * Created by MoncozGC on 2022/12/13
  */
@@ -75,7 +77,7 @@ public class PythonServiceImpl implements PythonService {
 
     @Override
     public int PythonToIntegrate(String type, String script) {
-        PYTHON_RUN_PATH = PathJudgment(type);
+        PYTHON_RUN_PATH = PathJudgment(type, "python");
         String PythonScript = PYTHON_RUN_PATH + script;
         log.info("PYTHON 执行环境: " + type + " PYTHON解释器路径: " + PYTHON_SYS_ENV + ", PYTHON脚本路径: " + PythonScript);
         log.info("PYTHON RUN SCRIPT: " + script);
@@ -101,13 +103,5 @@ public class PythonServiceImpl implements PythonService {
         return re;
     }
 
-    public static String PathJudgment(String type) {
-        if ("LOCAL".equals(type)) {
-            return PYTHON_RUN_PATH = System.getProperty("user.dir") + "/mall/src/main/resources/python/";
-        } else if ("SERVER".equals(type)) {
-            return PYTHON_RUN_PATH = System.getProperty("user.dir") + "/python/";
-        } else {
-            return PYTHON_RUN_PATH;
-        }
-    }
+
 }
