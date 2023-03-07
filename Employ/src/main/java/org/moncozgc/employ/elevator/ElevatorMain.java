@@ -1,6 +1,4 @@
-package com.moncozgc.elevator;
-
-import com.moncozgc.elevator.real.ElevatorThreadA;
+package org.moncozgc.employ.elevator;
 
 /**
  * Created by MoncozGC on 2023/3/6
