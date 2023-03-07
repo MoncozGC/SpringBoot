@@ -18,9 +18,9 @@ public class ElevatorThreadA extends Thread {
     // 电梯开关
     private boolean flag = true;
     // 电梯总楼层
-    private int floorMax = 22;
+    private final int floorMax = 22;
     // 电梯当前楼层 [-2, 22]
-    private int floorMin = -2;
+    private final int floorMin = -2;
 
     @Override
     public void run() {
@@ -53,7 +53,7 @@ public class ElevatorThreadA extends Thread {
                 } else if ("下行".equals(directionOf)) {
                     // 下行方向, 但是当前楼层 < 乘客需到达层, 那么就得执行向上方向
                     if (walking < userFloor) {
-                        System.out.println("执行上行行方向");
+                        System.out.println("执行上行方向");
                         walking = upside(walking, userFloor);
                     }
                     walking = downside(walking, userFloor);
